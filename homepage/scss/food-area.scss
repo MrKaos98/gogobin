@@ -1,0 +1,199 @@
+@import "_partial";
+
+#food-area {
+  position: relative;
+  width: 100%;
+  height: auto;
+  background-color: $primaryWhiteColor;
+  padding: 5% 0 2%;
+}
+.food-type-section {
+  position: relative;
+  width: 90%;
+  height: auto;
+  margin: auto;
+}
+.food-type-section:not(:last-child){
+  margin-bottom: 40px;
+}
+.food-type-heading {
+  width: 19.8%;
+  padding: 5px 0;
+  margin: 0 auto 10px;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: $primaryBlueColor;
+  letter-spacing: 1px;
+}
+.slide-btns-container {
+  width: 350px;
+  height: 30px;
+  margin: 0 auto 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 10px;
+}
+.slide-left-btn,
+.slide-right-btn {
+  border: 2px solid $primaryBlueColor;
+  background-color: transparent;
+  text-align: center;
+  cursor: pointer;
+  padding: 7px;
+  @include borderRadius(4px);
+  @include transition(0.2s);
+}
+.fa-arrow-left,
+.fa-arrow-right {
+  color: $primaryBlueColor;
+  @include transition(0.4s);
+}
+.slide-right-btn:focus,
+.slide-left-btn:focus {
+  outline: none;
+}
+.slide-left-btn:hover,
+.slide-right-btn:hover {
+  background-color: $primaryBlueColor;
+}
+.slide-left-btn:hover .fa-arrow-left {
+  color: white;
+}
+.slide-right-btn:hover .fa-arrow-right {
+  color: white;
+}
+.outer-images-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+  @include overflowX(auto);
+}
+.outer-images-container::-webkit-scrollbar {
+  display: none;
+  height: 10px;
+}
+.outer-images-container::-webkit-scrollbar-track {
+  @include borderRadius(4px);
+}
+.outer-images-container::-webkit-scrollbar-thumb {
+  background: $primaryBlueColor;
+  cursor: pointer !important;
+  @include borderRadius(4px);
+}
+.inner-images-container {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-column-gap: 3px;
+  margin-bottom: 5px;
+  @include transition(0.4s);
+}
+.per-image-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  cursor: pointer;
+  @include borderRadius(4px);
+}
+.per-image-container input[type="image"] {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  @include transition(1s);
+}
+.per-image-container:hover input[type="image"] {
+  @include transform(scale(1.1));
+}
+.image-heading {
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  border: 2px solid $primaryBlueColor;
+  padding: 5px;
+  background-color: #F2F3F4;
+  @include transform(translate(-50%,-50%));
+  @include borderRadius(10px);
+}
+.image-btn {
+  position: absolute;
+  top: 140%;
+  left: 50%;
+  width: 85%;
+  background-color: $primaryBlueColor;
+  padding: 5px;
+  color: #F2F3F4;
+  font-size: 1.2rem;
+  text-align: center;
+  cursor: pointer;
+  z-index: 2;
+  @include transform(translate(-50%,-50%));
+  @include borderRadius(4px);
+  @include transition(0.4s);
+  @include userSelect(none);
+}
+.per-image-container:hover .image-btn {
+  top: 80%;
+}
+.image-btn:hover {
+  background-color: $primaryBlueColor;
+}
+.food-line-divider {
+  width: 80%;
+  height: 2px;
+  background-color: rgba(0,0,0,0.1);
+  margin: 15px auto 25px;
+  @include borderRadius(20px);
+}
+.delivery-line-divider {
+  width: 80%;
+  height: 2px;
+  background-color: rgba(0,0,0,0.3);
+  margin: 15px auto 25px;
+  @include borderRadius(20px);
+}
+
+/* Start of Media Styling */
+@media screen and (max-width: 1200px){
+  .inner-images-container {
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 4px;
+    width: 100%;
+  }
+  .food-type-heading {
+    width: 204px;
+  }
+  .slide-btns-container {
+    display: none;
+  }
+}
+@media screen and (max-width: 1100px){
+  .per-image-container:hover .image-btn {
+      top: 75%;
+  }
+}
+@media screen and (max-width: 1050px){
+  .food-type-heading {
+    width: 190px;
+  }
+}
+@media screen and (max-width: 850px){
+  .inner-images-container {
+    @include overflowX(auto);
+  }
+  .inner-images-container {
+    grid-template-columns: repeat(10, 1fr);
+    width: 100%;
+    padding-bottom: 5px;
+  }
+  .per-image-container {
+    width: 190px;
+    height: auto;
+  }
+}

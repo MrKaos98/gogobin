@@ -1,0 +1,236 @@
+@import "_partial";
+
+#user-map-area {
+  width: 90%;
+  margin: auto;
+  background-color: $primaryWhiteColor;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-column-gap: 10px;
+  @include overflowY(auto);
+}
+#user-location-section {
+  position: relative;
+  height: 400px;
+  text-align: center;
+}
+#user-location-inputs {
+  width: 100%;
+}
+#user-location-inputs h3 {
+  font-weight: bold;
+  padding: 10px;
+  margin-top: 0px;
+  margin-bottom: 7px;
+  @include borderRadius(4px);
+}
+#marker-input-container {
+  position: relative;
+  width: 100%;
+  margin-bottom: 7px;
+}
+#input-container .fa-map-marker {
+  position: absolute;
+  top: 45%;
+  left: 4px;
+  width: 20px;
+  height: 20px;
+  font-size: 1.5rem !important;
+  color: black;
+  z-index: 4;
+  @include transform(translateY(-50%));
+}
+#location-input-field{
+  width: 100%;
+  font-size: 16px;
+  line-height: 1.42857143;
+  padding: 6px 6px 6px 30px;
+  color: #555;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  margin: 2px auto -1px;
+  @include borderRadius(4px);
+}
+#location-input-field:focus {
+  outline: none;
+}
+#city-list {
+  width: 100%;
+  height: 258px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  @include overflowY(scroll);
+  @include borderRadius(4px);
+  @include transition(0.3s);
+}
+#city-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+#city-list::-webkit-scrollbar-thumb {
+  @include borderRadius(10px);
+}
+#city-list li {
+  text-align: left;
+  cursor: pointer;
+}
+#city-list li:hover {
+  background-color: rgba(0,0,0,0.5);
+  color: $primaryWhiteColor;
+}
+#city-list li {
+  display: block;
+  padding: 8.8px;
+  color: black;
+}
+.store-list {
+  display: none;
+  margin-top: 5px;
+  width: 100%;
+  font-size: 16px;
+  line-height: 1.42857143;
+  padding: 6px;
+  color: #555;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  @include borderRadius(4px);
+}
+.store-list:focus {
+  outline: none;
+}
+#delivery-time-list{
+  display: none;
+  width: 100%;
+  font-size: 16px;
+  line-height: 1.42857143;
+  padding: 8px;
+  color: #555;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  margin: 5px auto 0;
+  @include borderRadius(4px);
+}
+#delivery-time-list:focus {
+  outline: none;
+}
+#start-order-container {
+  position: relative;
+  width: 100%;
+  margin-top: 7.5px;
+  overflow: hidden;
+}
+#checkmark {
+  position: absolute;
+  top: 21px;;
+  left: -100px;
+  font-size: 1.5rem;
+  color: $primaryBlueColor;
+  @include transform(translateY(-55%));
+  @include transition(0.4s);
+}
+#start-order-btn {
+  width: 100%;
+  padding: 12px 30px;
+  background-color:  $primaryBlueColor;
+  color: $primaryWhiteColor;
+  border: 0;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  @include borderRadius(4px);
+  @include transition(0.3s);
+}
+#start-order-btn:focus {
+  outline: none;
+}
+#start-order-btn:hover {
+  background-color: $primaryBlueColor;
+  color: white;
+}
+#start-order-container:hover #checkmark {
+  color: white;
+}
+#map-section-error-msg {
+  display: none;
+  color: red;
+  margin: 10px 0 0 0;
+  text-align: center;
+}
+#map-container {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+  @include borderRadius(4px);
+}
+#map {
+  width: 100%;
+  height: 100%;
+}
+/* Start of Media Styling */
+@media screen and (max-width: 1100px){
+  #user-location-inputs {
+    width: 100%;
+    margin: auto;
+    position: relative;
+    left: 0;
+    top: 0;
+    @include transform(none);
+  }
+}
+@media screen and (max-width: 950px){
+  #user-map-area {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  #user-location-section {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 50px;
+  }
+  #user-location-inputs {
+    width: 80%;
+  }
+  #map-container {
+    display: block;
+    width: 80%;
+    margin: auto;
+  }
+  #map {
+    position: relative;
+    top: 0;
+    left: 0;
+    @include transform(none);
+  }
+}
+@media screen and (max-width: 750px){
+  #map {
+    height: 350px;
+  }
+}
+@media screen and (max-width: 550px){
+  #user-location-inputs {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 500px){
+  #user-map-area {
+    padding: 10px 0;
+  }
+  #map-container {
+    width: 100%;
+  }
+  #map {
+    width: 95%;
+    left: 50%;
+  }
+}
+@media screen and (max-width: 450px){
+  #user-location-inputs {
+    width: 90%;
+  }
+  #map {
+    height: 275px;
+  }
+}

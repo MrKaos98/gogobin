@@ -1,0 +1,344 @@
+@import "_partial";
+
+header {
+  position: fixed;
+  width: 100%;
+  height: 65px;
+  background-color: transparent;
+  z-index: 4;
+  @include transition(0.4s);
+}
+.active-header {
+  background-color: $primaryWhiteColor;
+  @include boxShadow(0 0 20px rgba(0,0,0,0.3));
+}
+#hidden-fb-form {
+  display: none;
+}
+#order-in-progress,
+#edit-in-progress,
+#same-order-in-progress {
+  display: none;
+}
+#brand-logo {
+  position: absolute;
+  top: 49%;
+  left: 25px;
+  @include transform(translateY(-50%));
+  z-index: 1;
+}
+#brand-logo a {
+  color: $primaryWhiteColor;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.active-brand-logo {
+  color: $primaryBlueColor !important;
+}
+#horizontal-nav,
+#logged-in-nav {
+  margin-top: 1px;
+  position: absolute;
+  top: 50%;
+  z-index: 6;
+  @include transform(translateY(-50%));
+}
+#horizontal-nav {
+  right: 20px;
+}
+#logged-in-nav {
+  right: 10px;
+}
+.vertical-nav {
+  display: none;
+}
+.show-vertical-nav {
+  display: block;
+}
+.vertical-nav ul {
+  position: absolute;
+  top: 65px;
+  right: 10px;
+  width: 150px;
+  height: auto;
+  background-color: $primaryWhiteColor;
+  @include borderRadius(4px);
+  @include boxShadow(0 0 10px rgba(0,0,0,0.5));
+}
+#burger-wrapper {
+  display: none;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: 45px;
+  height: 35px;
+  cursor: pointer;
+  @include transform(translateY(-50%));
+}
+#burger-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.burger-top,
+.burger-middle,
+.burger-bottom {
+  position: absolute;
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  margin: auto;
+  @include borderRadius(4px);
+  @include transition(0.3s);
+}
+.burger-top {
+  top: 8px;
+  left: 50%;
+  @include transform(translateX(-50%));
+  @include transformOrigin(left center);
+}
+.burger-middle {
+  top: 50%;
+  left: 50%;
+  @include transform(translate(-50%,-50%));
+}
+.burger-bottom {
+  top: 24px;
+  left: 50%;
+  @include transform(translateX(-50%));
+  @include transformOrigin(left center);
+}
+.toggle-burger-colors {
+  background: $primaryBlueColor;
+}
+.active-middle {
+  background-color: transparent;
+}
+.active-top {
+  top: 50%;
+  @include transform(rotate(45deg) translateX(-50%));
+}
+.active-bottom {
+  top: 50%;
+  @include transform(rotate(-45deg) translateX(-50%));
+}
+#horizontal-nav li,
+#logged-in-nav li {
+  display: inline-block;
+}
+#contact-btn,
+#vert-contact-btn,
+#login-btn,
+#vert-login-btn,
+#signup-btn,
+#vert-signup-btn {
+  padding: 9px 15px 10px;
+  cursor: pointer;
+  @include borderRadius(4px);
+  @include transition(0.4s);
+}
+#signup-btn {
+  z-index: 4;
+}
+#signup-btn {
+  background-color: rgba(255,255,255,0.2);
+  @include borderRadius(4px);
+}
+.active-bg {
+  background-color: rgba(0,128,255,0.2) !important;
+}
+#contact-btn,
+#login-btn,
+#signup-btn a {
+  color: $primaryWhiteColor;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+.active-nav-item {
+  color: $primaryBlueColor !important;
+}
+#vert-contact-btn,
+#vert-login-btn,
+#vert-signup-btn a {
+  color: black;
+  font-weight: bold;
+  font-size: 0.9rem;
+  @include userSelect(none);
+}
+#shopping-cart {
+  position: relative;
+  display: block;
+  padding: 7.5px 20px;
+  color: $primaryWhiteColor;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 2 !important;
+  @include transition(0.2s);
+}
+#cart-badge {
+  display: none;
+  position: absolute;
+  right: 12px;
+  top: 14px;
+  background-color: red;
+  padding: 1px 3px;
+  color: white;
+  font-size: 0.75rem;
+  cursor: pointer;
+  overflow: hidden;
+  @include borderRadius(4px);
+  @include userSelect(none);
+}
+#user-box {
+  position: relative;
+  color: white;
+  cursor: pointer;
+  @include userSelect(none);
+}
+#user-box-img {
+  display: inline-block;
+  vertical-align: middle;
+  width: 35px;
+  height: 35px;
+  background-position: center;
+  background-repeat: no-repeat;
+  @include borderRadius(50%);
+  @include bgSize(cover);
+}
+#user-box .fa-angle-down {
+  @include transition(none !important);
+}
+#user {
+  display: block;
+  padding: 5px;
+  font-size: 1rem;
+  color: $primaryBlueColor;
+  @include borderRadius(4px 4px 0 0);
+}
+#user:hover {
+  background-color: $primaryBlueColor;
+  color: white;
+}
+#user-menu-window {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 65px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 5;
+  cursor: pointer;
+}
+.user-menu {
+  display: none;
+  position: fixed;
+  top: 70px;
+  right: 55px;
+  width: 175px;
+  height: auto;
+  background: $primaryWhiteColor;
+  margin: 0;
+  text-align: center;
+  grid-template-rows: repeat(5, 1fr);
+  grid-row-gap: 0;
+  overflow: hidden;
+  z-index: 6;
+  @include userSelect(none);
+  @include transition(0.2s);
+  @include borderRadius(4px);
+  @include boxShadow(0 0 10px rgba(0,0,0,0.5));
+}
+.user-menu li {
+  display: block;
+  width: 100%;
+  font-size: 0.95rem;
+  overflow: hidden;
+}
+#signed-in-as {
+  border-radius: 4px 4px 0 0;
+}
+#signed-in-as {
+  padding: 10px;
+  color: black;
+  text-align: left;
+  border-bottom: 2px solid rgba(0,0,0,0.2);
+  background-color: white;
+}
+#my-notifications-btn,
+#my-conversations-btn,
+#my-deliveries-btn,
+#logout-btn {
+  padding: 10px;
+  color: black;
+  text-align: left;
+  cursor: pointer;
+  background-color: white;
+}
+#my-notifications-btn:hover,
+#my-conversations-btn:hover,
+#my-deliveries-btn:hover,
+#logout-btn:hover {
+  background-color: $primaryBlueColor;
+  color: white;
+}
+#noti-badge,
+#convo-badge {
+  opacity: 0;
+  padding: 1px 7.5px;
+  background-color: red;
+  color: $primaryWhiteColor;
+  @include borderRadius(50%);
+}
+#user-badge {
+  position: absolute;
+  top: -5px;
+  right: 4px;
+  opacity: 0;
+  padding: 1px 7.5px;
+  background-color: red;
+  @include borderRadius(50%);
+  color: white;
+  z-index: -1;
+}
+#my-profile-btn {
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
+  border: 0;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  font-size: 0.95rem;
+  text-align: left;
+}
+#my-profile-btn:hover {
+  background-color: $primaryBlueColor;
+  color: white;
+}
+#logout-form {
+  display: none;
+}
+input[type="submit"]{
+  width: 100%;
+  border: 0;
+  background-color: transparent;
+  padding: 5px;
+  color: $primaryBlueColor;
+  cursor: pointer;
+  font-size: 1rem;
+  @include transition(0.2s);
+}
+
+/* Start of Media Styling */
+@media screen and (max-width: 525px){
+  #horizontal-nav {
+    display: none;
+  }
+  #logged-in-nav #contact-btn {
+    display: none;
+  }
+  #burger-wrapper {
+    display: block;
+  }
+}

@@ -1,0 +1,209 @@
+@import "_partial";
+
+#orders-modal-window {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  cursor: pointer;
+  z-index: 5;
+}
+#orders-modal-container {
+  position: fixed;
+  width: 600px;
+  height: auto;
+  max-height: 550px;
+  top: 45%;
+  left: 50%;
+  background-color: white;
+  z-index: 6;
+  @include overflowY(auto);
+  @include overflowX(hidden);
+  @include borderRadius(4px);
+  @include transform(translate(-50%,-50%));
+}
+#orders-modal-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+#orders-modal-container::-webkit-scrollbar-track {
+  background: $primaryWhiteColor;
+}
+#orders-modal-container::-webkit-scrollbar-thumb {
+  background: rgb(0,128,255);
+  @include borderRadius(4px);
+}
+#orders-modal-content {
+  position: relative;
+}
+#close-orders-btn {
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+#address-form {
+  display: none;
+}
+#unset-address-form {
+  display: none;
+}
+.store-orders {
+  color: red;
+  font-size: 1.5rem;
+}
+.store-orders:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.location-time-container {
+  width: 95%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 10px;
+  margin: 0 auto 10px;
+}
+.location-time-container > div {
+  overflow: hidden;
+  white-space: nowrap;
+  @include textOverflow(ellipsis);
+}
+.orders-store-name,
+.orders-store-address,
+.orders-delivery-time {
+  border: 2px solid $primaryBlueColor;
+  padding: 10px;
+  background-color: $primaryBlueColor;
+  color: white;
+  overflow: hidden;
+  white-space: nowrap;
+  @include borderRadius(4px);
+  @include textOverflow(ellipsis);
+}
+.orders-accordion {
+  width: 95%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 10px;
+  background-color: $primaryWhiteColor;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 0 auto 10px;
+  cursor: pointer;
+  @include borderRadius(4px);
+}
+.users-name,
+.num-of-items {
+  padding: 10px;
+}
+.fa-angle-down {
+  cursor: pointer;
+  @include transition(0.4s);
+}
+.rotate-arrow {
+  @include transformOrigin(50% 51%);
+  @include transform(rotate(180deg) translateZ(0));
+}
+.accordion-inner {
+  width: 100%;
+  height: 0px;
+  overflow: auto;
+  @include transition(0.2s);
+}
+.accordion-inner-height {
+  height: auto;
+  padding: 14px;
+  overflow: auto;
+}
+.store-order-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 10px;
+}
+.store-item-name {
+  background-color: $primaryBlueColor;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: $primaryWhiteColor;
+  margin-bottom: 5px;
+  @include borderRadius(4px);
+}
+.item-details-heading {
+  background-color: transparent;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+  border-bottom: 2px solid #333;
+  margin-bottom: 5px;
+}
+.store-modal-img {
+  width: 100%;
+  height: auto;
+  @include borderRadius(4px);
+}
+.store-order-right {
+  position: relative;
+}
+.store-order-right ul {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  font-size: 1rem;
+  @include transform(translate(-50%,-50%));
+}
+.store-order-right li {
+  padding-bottom: 10px;
+  text-align: center;
+}
+.deliver-order-btn {
+  position: relative;
+  left: 50%;
+  top: 0;
+  padding: 10px 35px;
+  background-color: #fff;
+  border: 2px solid $primaryBlueColor;
+  font-size: 1rem;
+  color: $primaryBlueColor;
+  cursor: pointer;
+  margin-top: 0px;
+  @include transition(0.2s);
+  @include borderRadius(4px);
+  @include transform(translateX(-50%));
+}
+.deliver-order-btn:hover {
+  background-color: $primaryBlueColor;
+  color: #fff;
+}
+
+/* Start of Media Styling */
+@media screen and (max-width: 650px){
+  .store-order-row {
+    width: 100%;
+    display: block;
+  }
+  .store-order-row > div {
+    display: block;
+    width: 80%;
+    margin: auto;
+  }
+  .item-details-heading {
+    border-bottom: none;
+  }
+  .store-order-right ul {
+    position: relative;
+    top: 0;
+    left: 0;
+    @include transform(none);
+  }
+}

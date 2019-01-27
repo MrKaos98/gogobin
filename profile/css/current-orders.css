@@ -1,0 +1,182 @@
+
+#order-now-btn {
+  font-weight: bold;
+}
+.col-8 {
+	position: relative;
+	width: 75%;
+	height: 100%;
+	background-color: var(--main-white-color);
+	overflow-y: auto;
+}
+#current-order-heading {
+  text-align: center;
+  transition: 0.2s;
+}
+#current-order-outer {
+	position: relative;
+	margin: auto;
+  padding-right: 4px;
+	width: 95%;
+	height: auto;
+	overflow-x: auto;
+  overflow-y: hidden;
+  transition: 0.2s;
+}
+#current-order-outer a {
+  text-decoration: none;
+  color: var(--main-blue-color);
+}
+#current-order-outer a:hover {
+  text-decoration: none;
+  color: var(--main-blue-color);
+}
+.store-location-container {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 7px;
+}
+#curr-order-tooltip {
+  opacity: 0;
+  position: absolute;
+  top: 70%;
+  left: 3px;
+  width: 245px;
+	background-color: rgba(0,0,0,0.7);
+	color: white;
+	border: 2px solid rgba(0,0,0,0);
+	border-radius: 4px;
+  -webkit-user-select: none;
+  line-height: 36px;
+	font-size: 1rem;
+  text-align: center;
+  transition: 0.3s;
+}
+#order-completed-btn:hover {
+	background-color: var(--main-blue-color);
+	color: var(--main-white-color);
+}
+.order-store-name,
+.order-store-address,
+.order-store-city,
+.order-store-date {
+  text-align: center;
+  line-height: 30px;
+  border: 1px solid rgba(0,0,0,0.25);
+  border-radius: 3px;
+}
+#current-order-row {
+	display: grid;
+  grid-template-columns: repeat(400, 1fr);
+  grid-column-gap: 7px;
+  position: relative;
+  width: 100%;
+	height: auto;
+  padding: 5px 0 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.order-item {
+  position: relative;
+  display: inline-block;
+  width: 255px;
+  height: 170px;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 4px;
+  padding: 10px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.order-item input[type='image'] {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: default;
+  border-radius: 4px;
+}
+
+.order-item:hover .item-details {
+  position: absolute;
+  top: 72%;
+}
+
+.current-order-footer {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 10px;
+	margin: 10px 0 0;
+  width: 500px;
+	height: auto;
+	text-align: center;
+}
+#edit-order-form,
+#order-completed-form,
+#cancel-order-form {
+  display: none;
+}
+
+#cancel-order-btn {
+  width: 100%;
+	height: 40px;
+	background-color: var(--main-white-color);
+	color: #b31217;
+	border: 2px solid #b31217;
+	border-radius: 4px;
+	font-size: 1rem;
+	font-weight: bold;
+	cursor: pointer;
+	transition: 0.2s;
+}
+#cancel-order-btn:hover {
+  background-color: #b31217;
+  color: var(--main-white-color);
+}
+#in-progress-span {
+  width: 100%;
+  line-height: 40px;
+  border-radius: 4px;
+  background-color: rgba(0,0,0,0.5);
+  color: var(--main-white-color);
+}
+
+#edit-order-btn {
+	width: 100%;
+	height: 40px;
+	background-color: var(--main-white-color);
+	color: rgb(23,105,255);
+	border: 2px solid rgb(23,105,255);
+	border-radius: 4px;
+	font-size: 1rem;
+	font-weight: bold;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+#edit-order-btn:hover {
+	background-color: rgb(23,105,255);
+	color: var(--main-white-color);
+}
+
+#order-completed-btn {
+	width: 100%;
+	height: 40px;
+	background-color: var(--main-white-color);
+	color: var(--main-blue-color);
+	border: 2px solid var(--main-blue-color);
+	border-radius: 4px;
+	font-size: 1rem;
+	font-weight: bold;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+#order-completed-btn:hover {
+	background-color: var(--main-blue-color);
+	color: var(--main-white-color);
+}

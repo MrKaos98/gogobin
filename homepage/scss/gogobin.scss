@@ -1,0 +1,126 @@
+@import "_partial";
+
+html, body {
+  margin: 0;
+  padding: 0;
+  @include overflowX(hidden);
+}
+
+body {
+  position: relative;
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
+* {
+  font-family: 'Ubuntu' , sans-serif;
+  @include boxSizing(border-box);
+}
+
+a {
+  text-decoration: none;
+}
+
+ul, li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+input[type="image"]:focus {
+  outline: none;
+}
+
+.hide {
+  display: none;
+}
+
+#properties-priority-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 10px;
+  margin-top: 5px;
+}
+
+#delivery-time-container {
+  width: 100%;
+}
+
+#cart-row-template {
+  display: none;
+}
+
+.deliver-order-form {
+  display: none;
+}
+
+.cancel-delivery-form,
+.delivery-completed-form,
+.reg-msg-read-form,
+.delivery-check-form {
+  display: none;
+}
+
+#msg-confirmation {
+  width: 275px;
+  position: fixed;
+  top: -120px;
+  left: 50%;
+  background-color: $primaryBlueColor;
+  z-index: 10;
+  @include borderRadius(4px);
+  @include boxShadow(0 0 5px rgba(255,255,255,0.5));
+  @include transform(translate(-50%, -50%));
+  @include transition(0.4s);
+}
+
+#msg-confirmation-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+}
+
+#msg-confirmation-content > p {
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+}
+
+#close-msg-confirm-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.close-bar-one {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  height: 2px;
+  border: 0;
+  background-color: rgba(0,0,0,0.4);
+  @include borderRadius(10px);
+  @include transform(translate(-50%, -50%) rotate(45deg));
+}
+
+.close-bar-two {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  height: 2px;
+  border: 0;
+  background-color: rgba(0,0,0,0.4);
+  @include borderRadius(10px);
+  @include transform(translate(-50%, -50%) rotate(135deg));
+}

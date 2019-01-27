@@ -1,0 +1,190 @@
+#banner-wrap {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  background: linear-gradient(#0080ff, white);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); }
+
+#banner-content {
+  position: relative;
+  text-align: center; }
+
+#banner-content > div {
+  width: 95%;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); }
+
+#hero-caption {
+  width: 80%;
+  max-width: 575px;
+  margin: auto;
+  line-height: 25px; }
+
+#hidden-bag {
+  display: none; }
+
+#banner-img-wrap {
+  position: relative;
+  height: auto; }
+
+#grid-bag {
+  width: 60%;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); }
+
+#banner-content p {
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
+  margin: 20px auto 30px; }
+
+#banner-wrap h1 {
+  padding: 0 20px;
+  font-size: 3rem;
+  color: white;
+  text-align: center;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s; }
+
+#btn-grid {
+  width: 80%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 30px; }
+
+.banner-btn {
+  border: 0;
+  background-color: rgba(0, 128, 255, 0.8);
+  font-size: 0.9rem;
+  font-weight: bold;
+  line-height: 40px;
+  color: white;
+  cursor: pointer;
+  outline: none;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px; }
+
+/* Start of Media Styling */
+@media screen and (max-width: 1000px) {
+  #banner-content {
+    left: 0;
+    width: 100%; } }
+@media screen and (max-width: 926px) {
+  #banner-wrap {
+    display: block;
+    grid-template-columns: none;
+    grid-template-rows: 60% 40%; }
+
+  #banner-content {
+    height: 100%;
+    padding-top: 10%; }
+
+  #banner-content div {
+    position: relative;
+    top: 0;
+    left: 0;
+    margin: 0 auto 20px;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
+    transform: none; }
+
+  #hidden-bag {
+    display: block;
+    width: 50%;
+    height: auto;
+    margin: auto; }
+
+  #banner-img-wrap {
+    display: none; } }
+@media screen and (max-width: 900px) and (max-height: 500px) {
+  #banner-content {
+    padding-top: 40px; } }
+@media screen and (max-width: 770px) and (max-height: 1030px) {
+  #hero-caption {
+    font-size: 1.1rem; }
+
+  #hidden-bag {
+    top: 75%; } }
+@media screen and (max-width: 415px) and (max-height: 825px) {
+  #hero-caption {
+    font-weight: 1.5rem; }
+
+  #hidden-bag {
+    top: 75%; } }
+@media screen and (max-width: 750px) {
+  #banner-content h1 {
+    font-size: 2rem; }
+
+  #hero-caption {
+    font-size: 1rem; } }
+@media screen and (max-width: 550px) {
+  #banner-content p {
+    font-size: 0.95rem;
+    width: 75%; }
+
+  #hidden-bag {
+    top: 80%; } }
+@media screen and (max-width: 475px) {
+  #banner-content {
+    padding-top: 20%; } }
+@media screen and (max-width: 325px) and (max-height: 570px) {
+  #hero-caption {
+    font-size: 0.9rem; }
+
+  #hidden-bag {
+    top: 95%; } }
+@media screen and (max-width: 450px) {
+  #hidden-bag {
+    width: 60%;
+    top: 80%; }
+
+  #btn-grid {
+    grid-template-columns: 1fr;
+    grid-gap: 10px; } }
+@media screen and (max-width: 425px) {
+  #banner-wrap h1 {
+    font-size: 2.25rem; } }
+@media screen and (max-width: 375px) {
+  #banner-wrap h1 {
+    font-size: 1.5rem; }
+
+  #banner-content p {
+    width: 75%; } }
+@media screen and (max-width: 345px) {
+  #hidden-bag {
+    width: 75%;
+    top: 75%; } }
+@media screen and (max-width: 330px) {
+  #banner-content {
+    padding-top: 10%; }
+
+  #banner-content h1 {
+    margin-top: 60px; }
+
+  #banner-content p {
+    font-size: 0.85rem;
+    line-height: 20px; } }
+
+/*# sourceMappingURL=banner.css.map */

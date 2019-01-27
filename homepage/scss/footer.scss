@@ -1,0 +1,91 @@
+@import "_partial";
+
+footer {
+  position: relative;
+  width: 100%;
+  height: auto;
+  background-color: $primaryBlueColor;
+}
+#ca-locations {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 50px;
+}
+#northern-locations,
+#southern-locations {
+  padding: 30px;
+}
+.location-grid-4 {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 10px;
+}
+.location-grid-3 {
+  width: 75%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 10px;
+  margin: auto;
+}
+#ca-locations p {
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+#ca-locations a {
+  color: rgba(255,255,255,0.5);
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 10px 0;
+  @include transition(0.2s);
+}
+#ca-locations a:hover {
+  color: #fff;
+  cursor: pointer;
+}
+#copyright {
+  padding: 20px 0;
+  margin: auto;
+  text-align: center;
+  color: rgba(255,255,255,0.5);
+  font-weight: bold;
+}
+
+/* Start of Media Styling */
+@media screen and (max-width: 1200px){
+  .location-grid-3,
+  .location-grid-4 {
+    display: block;
+  }
+  .location-grid-4 p,
+  .location-grid-3 p {
+    margin: 2px 0;
+  }
+}
+@media screen and (max-width: 525px){
+  #ca-locations {
+    grid-column-gap: 0;
+  }
+}
+@media screen and (max-width: 475px){
+  #northern-locations,
+  #southern-locations {
+    padding: 15px;
+  }
+}
+@media screen and (max-width: 400px){
+  #ca-locations p {
+    font-size: 0.95rem;
+  }
+  #ca-locations a {
+    font-size: 0.75rem;
+  }
+}
+@media screen and (max-width: 330px) {
+  #ca-locations p {
+    font-size: 0.85rem;
+  }
+}

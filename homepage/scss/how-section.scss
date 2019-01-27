@@ -1,0 +1,196 @@
+@import "_partial";
+
+#how-to-section {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding-top: 50px;
+  background-color: $primaryWhiteColor;
+  text-align: center;
+  z-index: 1;
+  margin-bottom: 100px;
+  @include boxShadow(0 -150px 200px $primaryWhiteColor);
+}
+.hiw-row {
+  width: 100%;
+  height: auto;
+  background-color: $primaryWhiteColor;
+  position: relative;
+}
+.hiw-row:not(:last-of-type){
+  margin-bottom: 50px;
+}
+.hiw-row-inner {
+  width: 90%;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 0;
+  margin: auto;
+}
+#hidden-caption {
+  display: none;
+}
+.image-caption {
+  position: relative;
+}
+.image-caption-inner {
+  width: 80%;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  @include transform(translate(-50%,-50%));
+}
+.how-to-icon .fa {
+  padding: 10px;
+  color: $primaryBlueColor;
+  font-size: 3rem;
+}
+.image-caption h1 {
+  font-size: 2rem;
+  margin: 20px auto;
+}
+.image-caption li {
+  height: auto;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: rgba(0,0,0,0.5);
+  line-height: 30px;
+}
+.hiw-row-inner input[type="image"] {
+  width: 100%;
+  height: auto;
+  cursor: default;
+  @include userSelect(none);
+  @include borderRadius(4px);
+  @include boxShadow(10px 10px 25px rgba(0,0,0,0.25));
+}
+// #image-one,
+// #image-three {
+//   transform: translateX(-100px);
+//   -webkit-transfom: translateX(-100px);
+//   -moz-transform: translateX(-100px);
+//   -ms-transform: translateX(-100px);
+//   -o-transform: translateX(-100px);
+//   opacity: 0;
+//   transition: all 1s;
+//   -webkit-transition: all 1s;
+//   -moz-transition: all 1s;
+//   -o-transition: all 1s;
+// }
+// #image-two {
+//   transform: translateX(100px);
+//   -webkit-transfom: translateX(100px);
+//   -moz-transform: translateX(100px);
+//   -ms-transform: translateX(100px);
+//   -o-transform: translateX(100px);
+//   opacity: 0;
+//   transition: all 1s;
+//   -webkit-transition: all 1s;
+//   -moz-transition: all 1s;
+//   -o-transition: all 1s;
+// }
+// #caption-one,
+// #caption-two,
+// #caption-three {
+//   transform: translate(-50%, -120%);
+//   -webkit-transfom: translate(-50%, -120%);
+//   -moz-transform: translate(-50%, -120%);
+//   -ms-transform: translate(-50%, -120%);
+//   -o-transform: translate(-50%, -120%);
+//   opacity: 0;
+//   transition: all 1s;
+//   -webkit-transition: all 1s;
+//   -moz-transition: all 1s;
+//   -o-transition: all 1s;
+// }
+
+/* Start of Media Styling */
+@media screen and (max-width: 1000px){
+  .image-caption-inner h1 {
+    font-size: 1.5rem;
+  }
+  .image-caption-inner li {
+    font-size: 0.9rem;
+  }
+}
+@media screen and (max-width: 950px){
+  .hiw-row-inner {
+    width: 95%;
+  }
+  .image-caption-inner input[type='image'] {
+    display: block;
+  }
+}
+@media screen and (max-width: 870px){
+  .hiw-row-inner {
+    width: 80%;
+    display: block;
+  }
+  .image-caption-inner {
+    width: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    margin: 55px 0;
+    @include transform(none);
+  }
+  .image-caption-inner > h1 {
+    font-size: 2rem;
+  }
+  .image-caption-inner li {
+    font-size: 1.1rem;
+  }
+  .image-caption {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .left-caption {
+    display: none;
+  }
+  #hidden-caption {
+    display: block;
+  }
+}
+@media screen and (max-width: 725px){
+  #how-to-section {
+    padding-top: 25px;
+  }
+}
+@media screen and (max-width: 650px){
+  .image-caption-inner {
+    margin: 35px 0 45px;
+  }
+}
+@media screen and (max-width: 450px){
+  .image-caption-inner p {
+    width: 95%;
+    margin: auto;
+  }
+}
+@media screen and (max-width: 375px){
+  #how-to-section {
+    @include boxShadow(0 -50px 100px $primaryWhiteColor);
+  }
+  .hiw-row-inner {
+    width: 100%;
+  }
+  .hiw-row-inner input[type="image"] {
+    @include borderRadius(0);
+  }
+  .image-caption-inner > h1 {
+    font-size: 1.7rem;
+  }
+  .image-caption-inner > p {
+    font-size: 1rem;
+  }
+}
+@media screen and (max-width: 330px) {
+  #how-to-section {
+    @include boxShadow(0 -50px 100 $primaryWhiteColor);
+  }
+}

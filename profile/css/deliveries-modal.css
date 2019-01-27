@@ -1,0 +1,206 @@
+#deliveries-modal-window {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  background-color: rgba(0,0,0,0.9);
+  z-index: 5;
+  cursor: pointer;
+}
+#deliveries-modal-container {
+  display: none;
+  position: absolute;
+  top: 50% !important;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 75%;
+  height: auto;
+  max-height: 75%;
+  overflow-y: auto;
+  background-color: var(--main-white-color);
+  border-radius: 5px;
+  z-index: 6;
+  transition: 0.5s;
+}
+#deliveries-modal-container::-webkit-scrollbar {
+  display: none;
+}
+#deliveries-modal-body {
+  position: relative;
+}
+#close-deliveries-btn {
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+#deliveries-modal-container h2 {
+  text-align: center;
+}
+#deliveries-modal-container p {
+  text-align: center;
+}
+.store-grid {
+  width: 95%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 10px;
+}
+.store-grid span {
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 4px;
+  padding: 10px;
+  text-align: center;
+}
+.delivery-order-outer {
+  width: 95%;
+  margin: auto;
+  height: auto;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.delivery-order-inner::-webkit-scrollbar {
+  height: 7px;
+}
+.delivery-order-inner::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+}
+.delivery-order-inner {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 10px;
+  margin: 10px 0;
+  padding-bottom: 10px;
+  overflow-x: auto;
+}
+.order-item {
+  position: relative;
+  width: 255px;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 4px;
+  padding: 10px;
+  float: left;
+  height: auto;
+  overflow-y: hidden;
+}
+.order-item .hidden-checkbox {
+  display: none;
+}
+.order-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.item-details {
+  width: 93%;
+  position: absolute;
+  top: 275%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  padding: 5px 0;
+  background-color: rgba(255,255,255,0.9);
+  font-size: 0.85rem;
+  font-weight: bold;
+  transition: 0.5s;
+  text-align: center;
+}
+.order-item:hover .item-details {
+  position: absolute;
+  top: 74%;
+}
+.delivery-btns-container {
+  width: 60%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 10px;
+}
+.delivery-item {
+  position: relative;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 4px;
+  padding: 10px;
+  height: auto;
+  overflow-y: hidden;
+}
+.delivery-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.delivery-cancel-btn,
+.delivery-completed-btn {
+  border-radius: 4px;
+  background-color: transparent;
+  padding: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.delivery-completed-btn {
+  border: 1px solid var(--main-blue-color);
+  color: var(--main-blue-color);
+}
+.delivery-completed-btn:hover {
+  background-color: var(--main-blue-color);
+  color: white;
+}
+.delivery-cancel-btn {
+  border: 1px solid rgba(0,0,0,0.5);
+  color: rgba(0,0,0,0.5);
+}
+.delivery-cancel-btn:hover {
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+}
+.delivery-msg-form {
+  width: 60%;
+  height: auto;
+  margin: 10px auto 0;
+  transition: 0.4s;
+  display: grid;
+  grid-template-columns: 85% 15%;
+}
+.delivery-msg-form input {
+  padding: 10px;
+  border: 1px solid rgba(0,0,0,0.3);
+}
+.delivery-msg-form input[type="text"] {
+  border-radius: 4px 0 0 4px;
+}
+.delivery-msg-submit {
+  border: 1px solid rgba(0,0,0,0.3);
+  border-left: 0;
+  border-radius: 0 4px 4px 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+.delivery-msg-form input[type='text']:focus,
+.delivery-msg-submit:focus {
+  outline: none;
+}
+.fa-send-o {
+  color: var(--main-blue-color);
+}
+.delivery-line-divider {
+  width: 80%;
+  height: 2px;
+  border-radius: 20px;
+  background-color: rgba(0,0,0,0.6);
+  margin: 25px auto;
+}
+.cancel-delivery-form,
+.delivery-completed-form,
+.reg-msg-read-form,
+.delivery-check-form {
+  display: none;
+}

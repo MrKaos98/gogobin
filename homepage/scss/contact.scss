@@ -1,0 +1,118 @@
+@import "_partial";
+
+#contact-section {
+  background: linear-gradient($primaryWhiteColor, $primaryBlueColor);
+  padding: 40px;
+  margin-bottom: -1px;
+}
+#contact-icon-wrapper {
+  width: 100%;
+  text-align: center;
+}
+#contact-section .fa-envelope {
+  color: $primaryBlueColor;
+  font-size: 3rem;
+  padding: 15px;
+  border: 2px solid $primaryBlueColor;
+  @include borderRadius(50%);
+}
+#contact-section h2 {
+  color: $primaryWhiteColor;
+  text-align: center;
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+#contact-section form {
+  width: 55%;
+  margin: auto;
+}
+#contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 10px;
+  margin-bottom: 15px;
+}
+.asterik {
+  color: red;
+}
+.input-heading {
+  display: block;
+  color: $primaryWhiteColor;
+  font-size: 0.6rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+}
+#contact-section input,
+#contact-section textarea {
+  border: 0;
+  @include borderRadius(4px);
+  @include transition(0.4s);
+}
+#contact-section input {
+  padding: 12px;
+}
+#contact-section textarea {
+  padding: 9px;
+}
+#contact-section input:not(#contact-submit-btn),
+#contact-section textarea {
+  width: 100%;
+  background-color: rgba(255,255,255,0.6);
+  margin-bottom: 10px;
+}
+#contact-section input:focus:not(#contact-submit-btn),
+#contact-section textarea:focus {
+  background-color: $primaryWhiteColor !important;
+  outline: none;
+}
+#contact-submit-btn {
+  display: block;
+  width: 40%;
+  margin: 10px auto 0;
+  border: 2px solid $primaryWhiteColor !important;
+  background-color: rgba(0,128,255, 0.8);
+  padding: 10px 20px;
+  font-weight: bold;
+  color: $primaryWhiteColor;
+  cursor: pointer;
+  @include borderRadius(4px !important);
+}
+#contact-submit-btn:hover {
+  outline: none;
+}
+#contact-username {
+  display: none;
+}
+
+/* Start of Media Styling */
+@media screen and (max-width: 1050px){
+  #contact-section form {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 850px){
+  #contact-section form {
+    width: 95%;
+  }
+}
+@media screen and (max-width: 750px){
+  #contact-section form {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 610px){
+  #contact-grid {
+    display: block;
+  }
+}
+@media screen and (max-width: 450px){
+  #contact-submit-btn {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 400px){
+  #contact-section {
+    padding: 40px 20px;
+  }
+}

@@ -1,0 +1,70 @@
+$primaryWhiteColor: rgb(255,255,255);
+$primaryBlueColor: rgb(0,128,255);
+
+@mixin transform($prop){
+  -webkit-transform: $prop;
+  -moz-transform: $prop;
+  -ms-transform: $prop;
+  -o-transform: $prop;
+  transform: $prop;
+}
+
+@mixin transition($prop){
+  -webkit-transition: $prop;
+  -moz-transition: $prop;
+  -o-transition: $prop;
+  transition: $prop;
+}
+
+@mixin borderRadius($prop){
+  -webkit-border-radius: $prop;
+  -moz-border-radius: $prop;
+  border-radius: $prop;
+}
+
+@mixin overflowY($prop){
+  overflow-y: $prop;
+  -ms-overflow-y: $prop;
+}
+
+@mixin overflowX($prop){
+  overflow-x: $prop;
+  -ms-overflow-x: $prop;
+}
+
+@mixin textOverflow($prop){
+  -o-text-overflow: $prop;
+  text-overflow: $prop;
+}
+
+@mixin transformOrigin($prop){
+  -webkit-transform-origin: $prop;
+  -moz-transform-origin: $prop;
+  -ms-transform-origin: $prop;
+  -o-transform-origin: $prop;
+  transform-origin: $prop;
+}
+
+@mixin boxShadow($prop){
+  -webkit-box-shadow: $prop;
+  -moz-box-shadow: $prop;
+  box-shadow: $prop;
+}
+
+@mixin bgSize($prop){
+  -webkit-background-size: $prop;
+  -moz-background-size: $prop;
+  -o-background-size: $prop;
+  background-size: $prop;
+}
+
+@mixin userSelect($prop){
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+@mixin boxSizing($prop){
+  -webkit-box-sizing: $prop;
+  -moz-box-sizing: $prop;
+  box-sizing: $prop;
+}
