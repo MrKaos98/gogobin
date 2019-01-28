@@ -9,10 +9,10 @@
             <p>Incorrect username or password.<button id='close-msg-btn'><i class='fa fa-close'></i></button></p>
           </div>
           <form action='../includes/login-inc.php' method='POST' id='login-form'>
-            <label for='username-field'>Username</label>
-            <input type='text' name='username' id='username-field' autocomplete='off' required/>
-            <label for='password-field'>Password</label>
-            <input type='password' name='pwd' id='password-field' autocomplete='off' required/>
+            <label for='login-usn-field'>Username</label>
+            <input type='text' name='username' id='login-usn-field' autocomplete='off' required/>
+            <label for='login-pwd-field'>Password</label>
+            <input type='password' name='pwd' id='login-pwd-field' autocomplete='off' required/>
             <div id='forgot-pwd-container'>
               <a id='forgot-pwd-link' href='forgotpwd.php'>Forgot Password?</a>
             </div>
