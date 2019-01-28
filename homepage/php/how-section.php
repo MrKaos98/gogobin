@@ -3,23 +3,7 @@
     <section id='how-to-section'>
       <div class='hiw-row'>
         <div class='hiw-row-inner'>
-          <input type='image' src='../img/chooselocation.PNG' alt='Maps' id='image-one'/>
           <div class='image-caption right-caption'>
-            <div class='image-caption-inner' id='caption-one'>
-              <div class='how-to-icon'><i class='fa fa-map-marker'></i></div>
-              <h1>Location</h1>
-              <ul>
-                <li>Type in your city or select one from the list</li>
-                <li>Select one of the stores in your selected city</li>
-                <li>Choose a time for your order to be delivered</li>            
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class='hiw-row'>
-        <div class='hiw-row-inner'>
-          <div class='image-caption left-caption'>
             <div class='image-caption-inner' id='caption-two'>
               <div class='how-to-icon'><i class='fa fa-check-circle-o'></i></div>
               <h1>Food Selection</h1>
@@ -46,8 +30,23 @@
       </div>
       <div class='hiw-row'>
         <div class='hiw-row-inner'>
-          <input type='image' src='../img/makechanges.PNG' alt='Edit Order' id='image-three'/>
+          <input type='image' src='../img/chooselocation.PNG' alt='Maps' id='image-one'/>
           <div class='image-caption right-caption'>
+            <div class='image-caption-inner' id='caption-one'>
+              <div class='how-to-icon'><i class='fa fa-map-marker'></i></div>
+              <h1>Location</h1>
+              <ul>
+                <li>Type in your city or select one from the list</li>
+                <li>Select one of the stores in your selected city</li>
+                <li>Choose a time for your order to be delivered</li>            
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='hiw-row'>
+        <div class='hiw-row-inner'>
+          <div class='image-caption left-caption'>
             <div class='image-caption-inner' id='caption-three'>
               <div class='how-to-icon'><i class='fa fa-edit'></i></div>
               <h1>Ordering</h1>
@@ -58,6 +57,7 @@
               </ul>
             </div>
           </div>
+          <input type='image' src='../img/makechanges.PNG' alt='Edit Order' id='image-three'/>
         </div>
       </div>
     </section>
