@@ -69,7 +69,7 @@
     ?>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type='text/javascript' src='../home-bundle.js'></script>
+  <script type='text/javascript' src='js/bundle.js'></script>
   <script>
     let mapOne;
     const centerZoomDefault = {
@@ -80,7 +80,7 @@
       mapOne = new google.maps.Map(document.getElementById("map"), centerZoomDefault);
     }
   </script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrQVQzF7VuwHhRVfm7OykRl2puiMMGjEI&callback=initMap"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key={YOUR API KEY}&callback=initMap"></script>
 
 </body>
 </html>
