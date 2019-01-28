@@ -37,8 +37,8 @@
       include_once "php/user-menu.php";
       include_once "php/banner-section.php";
       include_once "php/how-section.php";
-      include_once "php/map-section.php";
       include_once "php/food-section.php";
+      include_once "php/map-section.php";      
       include_once "php/contact-section.php";
       include_once "php/footer-section.php";
       include_once "php/item-temp.php";
@@ -51,8 +51,6 @@
     ?>
 
 
-
-  
     <?php
       if (isset($_SESSION['edit-in-progress'])){
         if($_SESSION['edit-in-progress'] == "yes"){
@@ -70,19 +68,19 @@
       }
     ?>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/main.js"></script>
-  <script type="text/javascript" src="js/login-section.js"></script>
-  <script type="text/javascript" src="js/banner-section.js"></script>
-  <script type="text/javascript" src="js/how-section.js"></script>
-  <script type="text/javascript" src="js/notis-section.js"></script>
-  <script type="text/javascript" src="js/deliveries-section.js"></script>
-  <script type="text/javascript" src="js/orders-section.js"></script>
-  <script type="text/javascript" src="js/convos-section.js"></script>
-  <script type="text/javascript" src="js/food-section.js"></script>
-  <script type="text/javascript" src="js/contact-section.js"></script>
-  <script type="text/javascript" src="js/footer-section.js"></script>
-  <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrQVQzF7VuwHhRVfm7OykRl2puiMMGjEI&callback=initializeMap"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type='text/javascript' src='../home-bundle.js'></script>
+  <script>
+    let mapOne;
+    const centerZoomDefault = {
+      zoom: 5,
+      center: {lat: 38.415405, lng: -120.770234}
+    };
+    function initMap(){
+      mapOne = new google.maps.Map(document.getElementById("map"), centerZoomDefault);
+    }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrQVQzF7VuwHhRVfm7OykRl2puiMMGjEI&callback=initMap"></script>
 
 </body>
 </html>
