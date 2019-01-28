@@ -1,6 +1,7 @@
 <?php 
   echo "
     <section id='food-area'>
+      <h1 id='food-section-heading'>Food Items</h1>
       <section class='food-type-section'>
         <div class='food-type-heading'>Candy</div>
         <div class='slide-btns-container'>
