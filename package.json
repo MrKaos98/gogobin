@@ -1,0 +1,22 @@
+{
+  "name": "foodbin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "home-build": "browserify homepage/js/main.js -o homepage/js/bundle.js",
+    "home-watch": "watchify homepage/js/main.js -o homepage/js/bundle.js",
+    "profile-build": "browserify profile/js/main.js -o profile/js/bundle.js",
+    "profile-watch": "watchify profile/js/main.js -o profile/js/bundle.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "browserify": "^16.2.3",
+    "redux": "^4.0.1"
+  },
+  "devDependencies": {
+    "watchify": "^3.11.0"
+  }
+}
