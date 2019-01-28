@@ -1,59 +1,57 @@
-const foodRowsObj = {
-  init: function(){
-    this.cacheDom();
+const foodSection = {
+  state: {
+    rowReset: false
+  },
+  init(){
+    this.cacheDOM();
     this.bindEvents();
-    this.defaultRowLayout = true;
-    this.state = {
-      rowReset: false
-    };
-    this.currentSectionIndex = 0;
-    this.width = 100;
   },
-  cacheDom: function(){
+  cacheDOM(){
     this.innerImageContainers = document.getElementsByClassName("inner-images-container");
-    this.slideLeftBtns = document.getElementsByClassName("slide-left-btn"),
+    this.slideLeftBtns = document.getElementsByClassName("slide-left-btn");
     this.slideRightBtns = document.getElementsByClassName("slide-right-btn");
+    this.currentSectionIndex = 0;  
+    this.width = 100; 
   },
-  bindEvents: function(){
-    window.addEventListener("resize", this.activateRowReset.bind(this));
-    for(let counter = 0; counter < this.slideLeftBtns.length; counter++){
-      this.slideLeftBtns[counter].addEventListener("click", this.slideFoodRowLeft.bind(this, counter));
-      this.slideRightBtns[counter].addEventListener("click", this.slideFoodRowRight.bind(this, counter));
-    }
+  bindEvents(){
+    window.addEventListener("resize", this.rowResetHandler.bind(this));
+    [...this.slideLeftBtns].forEach((btn, index) => {
+      btn.addEventListener('click', this.slideRowLeft.bind(this, index));
+    });
+    [...this.slideRightBtns].forEach((btn, index) => {
+      btn.addEventListener('click', this.slideRowRight.bind(this, index));
+    });
   },
-  activateRowReset(){
-    var windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    var shouldReset = (windowWidth < 1200) ? true : false;
-    if(shouldReset === true && this.state.rowReset === false){
+  rowResetHandler() {
+    const windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    const shouldReset = (windowWidth < 1200) ? true : false;
+    if(shouldReset && this.state.rowReset === false){
       this.resetFoodItemRows();
-    } else if (shouldReset === false && this.state.rowReset === true){
+    } else if (shouldReset === false && this.state.rowReset){
       this.state.rowReset = false;
     }
   },
   resetFoodItemRows(){
     this.state.rowReset = true;
-    let counter = 0;
-    let rowLength = this.innerImageContainers.length;
-    for(counter; counter < rowLength; counter++){
-      this.innerImageContainers[counter].style.left = "0";
-    }
+    [...this.innerImageContainers].forEach(container => container.style.left = 0);
   },
-  slideFoodRowLeft(index){
+  slideRowLeft(index){
     this.currentSectionIndex--;
     if(this.currentSectionIndex < 0){
       this.currentSectionIndex = 1;
     }
-    this.moveFoodSection(index);
+    moveFoodSection(index);
   },
-  slideFoodRowRight(index){
+  slideRowRight(index){
     this.currentSectionIndex++;
     if(this.currentSectionIndex >= 2){
       this.currentSectionIndex = 0;
     }
-    this.moveFoodSection(index);
+    moveFoodSection(index);
   },
   moveFoodSection(index){
     this.innerImageContainers[index].style.left = -this.width * this.currentSectionIndex + "%";
   }
 };
-foodRowsObj.init();
+
+module.exports = foodSection;
