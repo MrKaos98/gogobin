@@ -1,16 +1,25 @@
+const store = require('../../store/store-index');
+const { toggleLogin } = require('../../store/action-creators/action-creators');
+
 const loginObj = {
   init: function(){
     this.cacheDom();
     this.bindEvents();
-    this.usernameField.focus();
-    this.loginWrapperWindow.style.display = "block";
+    this.checkWrapStatus();
+  },
+  checkWrapStatus: function(){
+    if(store.getState().loginReducer.showLoginWrap){
+      this.showWrapHandler();
+    } else {
+      this.closeWrapperHandler();
+    }
   },
   cacheDom: function(){
     this.loginWrapperWindow = document.getElementById("login-wrapper-window");
     this.loginWrapper = document.getElementById("login-wrapper");
     this.loginForm = document.getElementById("login-form");
-    this.usernameField = document.getElementById("username-field");
-    this.passwordField = document.getElementById("password-field");
+    this.usernameField = document.getElementById("login-usn-field");
+    this.passwordField = document.getElementById("login-pwd-field");
     this.loginWrapperBtn = document.getElementById("login-wrapper-btn");
     this.loginSubmitBtn = document.getElementById("login-submit");
     this.closeLoginWrapper = document.getElementById("login-wrapper-close-btn");
@@ -18,11 +27,13 @@ const loginObj = {
     this.closeMsgBtn = document.getElementById("close-msg-btn");
   },
   bindEvents: function(){
-    this.passwordField.addEventListener("keypress", this.handlePwdKey.bind(this));
-    this.closeMsgBtn.addEventListener("click", this.closeErrorMsg.bind(this));
-    this.closeLoginWrapper.addEventListener("click", this.closeWrapperHandler.bind(this));
-    this.loginWrapperWindow.addEventListener("click", this.closeWrapperHandler.bind(this));
-    this.loginWrapperBtn.addEventListener("click", this.authenticateUser.bind(this));
+    if(this.loginWrapperWindow) {
+      this.passwordField.addEventListener("keypress", this.handlePwdKey.bind(this));
+      this.closeMsgBtn.addEventListener("click", this.closeErrorMsg.bind(this));
+      this.closeLoginWrapper.addEventListener("click", () => store.dispatch(toggleLogin(false)));
+      this.loginWrapperWindow.addEventListener("click", () => store.dispatch(toggleLogin(false)));
+      this.loginWrapperBtn.addEventListener("click", this.authenticateUser.bind(this));
+    }
   },
   authenticateUser: function(){
     var usrNameValue = this.usernameField.value;
@@ -53,11 +64,23 @@ const loginObj = {
       this.loginWrapperBtn.click();
     }
   },
+  showWrapHandler: function(){
+    this.loginWrapperWindow.style.display = "block";
+    this.loginWrapper.style.top = 0;
+    this.usernameField.focus();
+  },
   closeWrapperHandler: function(){
-    this.loginWrapper.style.top = "-500px";
-    this.usernameField.blur();
-    this.loginWrapperWindow.style.display = "none";
-    this.loginForm.reset();
-    document.body.classList.remove("stop-scrolling");
+    if(this.loginWrapperWindow){
+      this.loginWrapperWindow.style.display = "none";
+      this.loginWrapper.style.top = "-500px";
+      this.usernameField.blur();    
+      this.loginForm.reset();
+      document.body.classList.remove("stop-scrolling");
+    }
   }
 }
+store.subscribe(() => {
+  loginObj.checkWrapStatus();
+});
+
+module.exports = loginObj;
