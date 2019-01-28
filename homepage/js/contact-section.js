@@ -1,28 +1,30 @@
-const contactObj = {
-  init: function(){
-    this.cacheDom();
+const contactSection = {
+  init(){
+    this.cacheDOM();
     this.bindEvents();
   },
-  cacheDom: function(){
-    this.contactHeaderBtn = document.getElementById("contact-btn");
+  cacheDOM(){
+    this.contactBtn = document.getElementById("contact-btn");
     this.vertContactBtn = document.getElementById("vert-contact-btn");
     this.contactForm = document.querySelector("#contact-section form");
     this.contactSubmitBtn = document.getElementById("contact-submit-btn");
+    this.sectionOffset = document.getElementById("contact-section").offsetTop - 70;
   },
-  bindEvents: function(){
-    this.contactHeaderBtn.addEventListener("click", this.scrollToSection.bind(this));
-    if(this.vertContactBtn) this.vertContactBtn.addEventListener("click", this.scrollToSection.bind(this));
+  bindEvents(){
+    this.contactBtn.addEventListener("click", this.scrollToSection.bind(this));
     this.contactSubmitBtn.addEventListener("click", this.contactSubmitHandler.bind(this));
+    if(this.vertContactBtn){
+      this.vertContactBtn.addEventListener("click", this.scrollToSection.bind(this)); 
+    }
   },
-  scrollToSection: function() {
-    var sectionOffset = document.getElementById("contact-section").offsetTop - 70;
+  scrollToSection() {
     window.scroll({
-      top: sectionOffset,
+      top: this.sectionOffset,
       left: 0,
       behavior: 'smooth'
     });
   },
-  contactSubmitHandler: function(){
+  contactSubmitHandler() {
     if(headerObj.userLoggedIn.textContent != "yes"){
       e.preventDefault();
       alert("Sign in to send us a message");
@@ -31,5 +33,6 @@ const contactObj = {
       this.contactForm.reset();
     }
   }
-}
-contactObj.init();
+};
+
+module.exports = contactSection;
