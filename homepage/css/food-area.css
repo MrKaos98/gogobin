@@ -4,6 +4,10 @@
   height: auto;
   background-color: white;
   padding: 5% 0 2%; }
+  #food-area #food-section-heading {
+    width: 90%;
+    margin: 0 auto 40px;
+    font-size: 2.3rem; }
 
 .food-type-section {
   position: relative;
@@ -73,8 +77,8 @@
   position: relative;
   width: 100%;
   height: auto;
-  -ms-overflow-x: auto;
-  overflow-x: auto; }
+  overflow-x: auto;
+  -ms-overflow-x: auto; }
 
 .outer-images-container::-webkit-scrollbar {
   display: none;
@@ -221,8 +225,8 @@
     width: 190px; } }
 @media screen and (max-width: 850px) {
   .inner-images-container {
-    -ms-overflow-x: auto;
-    overflow-x: auto; }
+    overflow-x: auto;
+    -ms-overflow-x: auto; }
 
   .inner-images-container {
     grid-template-columns: repeat(10, 1fr);
