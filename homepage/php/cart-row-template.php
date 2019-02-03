@@ -1,6 +1,6 @@
 <?php
   echo '
-    <li class="cart-item">
+    <li class="cart-item" style="display: none">
       <h4 class="cart-item-heading"></h4>
       <img class="cart-image"/>
       <p>
