@@ -5,6 +5,8 @@ const contactSection = require('./contact-section').init();
 const foodSection = require('./food-section').init();
 const itemModalSection = require('./item-modal-section').init();
 const locationSection = require('./location-section').init();
+const convosSection = require('./convos-section').init();
+const cartSection = require('./cart-section').init();
 
 /*--- Open Store Orders Modal ---*/
 function showStoreOrders(storeAddress){
