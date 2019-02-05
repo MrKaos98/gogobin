@@ -51,7 +51,7 @@
             </select>
             <div id='start-order-container'>
               <span id='checkmark'>&#10004;</span>
-              <input type='button' id='start-order-btn' value='Start Ordering'/>
+              <input type='button' id='start-order-btn' value='Ready'/>
               <p id='map-section-error-msg'>Must choose a city and store for delivery</p>
             </div>
           </div>
