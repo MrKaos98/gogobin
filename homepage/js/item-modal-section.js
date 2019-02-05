@@ -1,3 +1,6 @@
+const store = require('../../store/store-index');
+const { addCartItem } = require('../../store/action-creators/action-creators');
+
 const itemModalSection = {
   init: async function(){
     this.cacheDom();
@@ -10,6 +13,7 @@ const itemModalSection = {
     this.itemModalWrapper = document.getElementsByClassName("item-modal-wrapper")[0];
     this.itemModalHeading = document.querySelector(".item-modal-wrapper h3");
     this.itemModalCloseBtn = document.getElementById("item-modal-close-btn");
+    this.cartBadge = document.getElementById("cart-badge");
     this.modalImage = document.getElementsByClassName("item-modal-image")[0];
     this.itemAmount = document.querySelector("[type='number']");
     this.amountBtns = document.querySelectorAll("#amount-btns > button");
@@ -39,34 +43,22 @@ const itemModalSection = {
     }
   },
   addToCartHandler: function(){
-    this.checkCurrOrders();
-    setTimeout(() => {
-      if(headerObj.userLoggedIn.textContent == "no"){
-        alert("You must log in to place an order");
-      } else if(this.currOrderStatus == "order in progress") {
-        alert("You have an order in progress");
-      } else {
-        this.modalImgSrc = this.modalImage.getAttribute("data-src");
-        let index = parseInt(this.addToCartBtn.getAttribute("btn-for"), 10);
-        cartModalObj.checkImgSrcArr(this.modalImgSrc, index);
-      }
-    }, 400);
+    const itemName = this.addToCartBtn.getAttribute('data-name');
+    const itemIndex = this.addToCartBtn.getAttribute('data-index');
+    const itemImage = this.addToCartBtn.getAttribute('data-img');
+    const itemQuantity = parseInt(this.itemAmount.value, 10);
+    store.dispatch(addCartItem(itemName, itemImage, itemIndex, itemQuantity));
+    this.closeItemModal();
+    this.updateCartBadge();
   },
-  checkCurrOrders: function(){
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "../includes/checkCurrentOrders.php", true);
-    xhr.onload = function(){
-      if(xhr.status == 200 || this.status == 200){
-        var data = this.responseText;
-        if(data){
-          this.currOrderStatus = data;
-        } else {
-          this.currOrderStatus = "";
-          return;
-        }
-      }
+  updateCartBadge: function(){
+    const cartItemLength = store.getState().cart.cartItems.length;
+    this.cartBadge.textContent = cartItemLength;
+    if(cartItemLength > 0){
+      this.cartBadge.style.display = "block";
+    } else {
+      this.cartBadge.style.display = "none";
     }
-    xhr.send();
   },
   displayItemModal: function(index){
     this.itemModalWindow.style.display = "block";
@@ -77,28 +69,14 @@ const itemModalSection = {
     this.modalImage.setAttribute("alt", this.jsonObj.itemNames[index]);
     this.modalImage.setAttribute("data", (index + 1));
     this.modalImage.setAttribute("data-src", (index + 1));
-    this.addToCartBtn.setAttribute("btn-for", index);
+    this.addToCartBtn.setAttribute("data-index", index);
+    this.addToCartBtn.setAttribute('data-name', this.jsonObj.itemNames[index]);
+    this.addToCartBtn.setAttribute('data-img', `../img/image${(index + 1)}.jpg`);
   },
   closeItemModal: function(){
     this.itemModalWrapper.style.display = "none";
     this.itemModalWindow.style.display = "none";
-  },
-  addItemDataHandler: function(index){
-    this.itemId = this.modalImage.getAttribute("data") - 1;
-    this.getImageInfo(index);
-  },
-  getImageInfo: function(index){
-    this.itemImageSrc = this.modalImage.getAttribute("src");
-    this.itemImageData = this.modalImage.getAttribute("data");
-    this.itemImageName = this.modalImage.getAttribute("alt");
-    this.imageHeading = this.itemModalHeading.textContent;
-    headerObj.incrementBadgeNum();
-    this.showItemInCart(index);
-  },
-  showItemInCart: function(index){
-    cartModalObj.cacheItemDetails(index);
-    this.itemModalWindow.style.display = "none";
-    this.itemModalWrapper.style.display = "none";
+    this.itemAmount.value = 1;
   }
 }
 
