@@ -1,4 +1,16 @@
-const TOGGLE_LOGIN = 'TOGGLE_LOGIN';
+const toggleLogin = 'TOGGLE_LOGIN';
+const editOrder = 'EDIT_ORDER';
+const completeOrder = 'COMPLETE_ORDER';
+const checkCurrentOrders = 'CHECK_CURRENT_ORDERS';
+const addCartItem = 'ADD_CART_ITEM';
+const removeCartItem = 'REMOVE_CART_ITEM';
+const updateCartLocation = 'UPDATE_CART_LOCATION';
+
 module.exports = {
-  TOGGLE_LOGIN
+  toggleLogin,
+  editOrder,
+  completeOrder,
+  checkCurrentOrders,
+  addCartItem,
+  removeCartItem
 };
