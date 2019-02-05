@@ -35,6 +35,7 @@
 }
 #cart-wrap::-webkit-scrollbar-thumb {
   background: #0080ff;
+  @include borderRadius(6px);
 }
 #close-cart-btn {
   position: absolute;
@@ -85,8 +86,10 @@
   margin: auto;
 }
 #cart-items-wrap img {
+  display: block;
   width: 100%;
   height: auto;
+  margin: 0;
   @include borderRadius(3px);
 }
 .cart-item-btns-wrap {
