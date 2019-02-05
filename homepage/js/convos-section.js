@@ -1,9 +1,11 @@
-const convosObj = {
+const convosSection = {
   init: function(){
     this.cacheDom();
     this.bindEvents();
   },
   cacheDom: function(){
+    this.userBox = document.getElementById('user-box');
+    this.userMenu = document.getElementsByClassName('user-menu')[0];
     this.conversationsBtn = document.getElementById("my-conversations-btn");
     this.convoBadge = document.getElementById("convo-badge");
     this.convoModalWindow = document.getElementById("convos-modal-window");
@@ -16,7 +18,8 @@ const convosObj = {
     this.convoSendSubmit = document.getElementsByClassName("convo-send-submit");
   },
   bindEvents: function(){
-    if(this.conversationsBtn){
+    if(this.userBox){
+      this.userBox.addEventListener('click', this.toggleUserMenu.bind(this));
       this.conversationsBtn.addEventListener("click", this.showConvosHandler.bind(this));
       this.closeConvosBtn.addEventListener("click", this.closeConvosHandler.bind(this));
       this.convoModalWindow.addEventListener("click", this.closeConvosHandler.bind(this));
@@ -24,6 +27,14 @@ const convosObj = {
         this.viewConvos[i].addEventListener("click", this.viewConvoHandler.bind(this, i));
         this.convoSendSubmit[i].addEventListener("click", this.sendMsgHandler.bind(this, i));
       }
+    }
+  },
+  toggleUserMenu: function(){
+    if(this.userMenu.style.display != "grid"){
+      this.userMenu.style.display = "grid";
+      this.checkForNewMsgs();
+    } else {
+      this.userMenu.style.display = "none";
     }
   },
   sendMsgHandler: function(index){
@@ -196,4 +207,5 @@ const convosObj = {
     }
   }
 };
-convosObj.init();
+
+module.exports = convosSection;
