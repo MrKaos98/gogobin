@@ -1,8 +1,23 @@
 const actionTypes = require('../action-types/action-types');
 const toggleLogin = val => ({
-  type: actionTypes.TOGGLE_LOGIN,
+  type: actionTypes.toggleLogin,
   val: val
 });
+const addCartItem = (name, image, index, quantity) => ({
+  type: actionTypes.addCartItem,
+  val: {name, image, index, quantity}
+});
+const removeCartItem = index => ({
+  type: actionTypes.removeCartItem,
+  val: index
+});
+const updateCartLocation = (city, store, address, delivery) => ({
+  type: actionTypes.updateCartLocation,
+  val: {city, store, address, delivery}
+});
 module.exports = {
-  toggleLogin
+  toggleLogin,
+  addCartItem,
+  removeCartItem,
+  updateCartLocation
 };
