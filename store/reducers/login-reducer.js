@@ -1,13 +1,14 @@
-const { TOGGLE_LOGIN } = require('../action-types/action-types');
+const { toggleLogin } = require('../action-types/action-types');
 const initState = {
   showLoginWrap: false
 };
 const toggleLoginWrap = (state, val) => ({
+  ...state,
   showLoginWrap: val
 });
 const loginReducer = (state = initState, action) => {
   switch(action.type){
-    case TOGGLE_LOGIN: return toggleLoginWrap(state, action.val);
+    case toggleLogin: return toggleLoginWrap(state, action.val);
     default: return state;
   }
 }
