@@ -1,7 +1,7 @@
 const store = require('../../store/store-index');
 const { toggleLogin } = require('../../store/action-creators/action-creators');
 
-const headerObj = {
+const headerSection = {
   init(){
     this.cacheDom();
     this.bindEvents();
@@ -14,6 +14,7 @@ const headerObj = {
     this.brandLogo = document.querySelector("#brand-logo a");
     this.contactBtn = document.getElementById("contact-btn");
     this.loginBtn = document.getElementById("login-btn");
+    this.shoppingCart = document.getElementById('shopping-cart');
     this.vertLoginBtn = document.getElementById("vert-login-btn");
     this.loginWrapper = document.getElementById("login-wrapper");
     this.signUpAnchor = document.querySelector("#signup-btn a");
@@ -30,9 +31,6 @@ const headerObj = {
     this.logoutBtn = document.getElementById("logout-btn");
     this.logoutSubmit = document.getElementById("logout-submit");
     this.userLoggedIn = document.getElementById("user-logged-in");
-    this.shoppingCart = document.getElementById("shopping-cart");
-    this.cartWindow = document.getElementById("cart-window");
-    this.cartWrap = document.getElementById("cart-wrap");
     this.cartBadge = document.getElementById("cart-badge");
     this.closeCartBtn = document.getElementById("close-cart-btn");
     this.orderInProgress = document.getElementById("order-in-progress");
@@ -53,12 +51,9 @@ const headerObj = {
         this.displayUserBadge();
       }.bind(this), 5000);
     }
-    if(this.shoppingCart) this.shoppingCart.addEventListener("click", this.showCartModal.bind(this));
-    if(this.closeCartBtn) this.closeCartBtn.addEventListener("click", this.closeCartModal.bind(this));
     if(this.userBox) this.userBox.addEventListener("click", this.handleUserBoxClick.bind(this));
     if(this.userBoxImg) this.getProfileImage();
     if(this.logoutBtn) this.logoutBtn.addEventListener("click", this.logUserOut.bind(this));
-    this.cartWindow.addEventListener("click", this.closeCartModal.bind(this));
   },
   getProfileImage: function(){
     var userId = this.userBoxImg.getAttribute("data-id");
@@ -74,29 +69,10 @@ const headerObj = {
       }
     }.bind(this));
   },
-  closeCartModal: function(){
-    this.closeCartBtn.style.display = "none";
-    this.cartWindow.style.display = "none";
-    this.cartWrap.style.display = "none";
-    $("body").removeClass("stop-scrolling");
-  },
-  showCartModal: function(){
-    this.userMenu.style.display = "none";
-    this.cartWindow.style.display = "block";
-    this.cartWrap.style.display = "block";
-    this.closeCartBtn.style.display = "block";
-    $("body").addClass("stop-scrolling");
-  },
   logUserOut: function(){
     this.logoutSubmit.click();
   },
   handleUserBoxClick: function(){
-    if(this.userMenu.style.display != "grid"){
-      this.userMenu.style.display = "grid";
-      convosObj.checkForNewMsgs();
-    } else {
-      this.userMenu.style.display = "none";
-    }
     this.displayUserBadge();
   },
   handleScroll: function(){
@@ -232,4 +208,4 @@ const headerObj = {
   }
 };
 
-module.exports = headerObj;
+module.exports = headerSection;
