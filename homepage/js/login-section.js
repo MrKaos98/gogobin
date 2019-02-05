@@ -1,14 +1,14 @@
 const store = require('../../store/store-index');
 const { toggleLogin } = require('../../store/action-creators/action-creators');
 
-const loginObj = {
+const loginSection = {
   init: function(){
     this.cacheDom();
     this.bindEvents();
     this.checkWrapStatus();
   },
   checkWrapStatus: function(){
-    if(store.getState().loginReducer.showLoginWrap){
+    if(store.getState().login.showLoginWrap){
       this.showWrapHandler();
     } else {
       this.closeWrapperHandler();
@@ -80,7 +80,7 @@ const loginObj = {
   }
 }
 store.subscribe(() => {
-  loginObj.checkWrapStatus();
+  loginSection.checkWrapStatus();
 });
 
-module.exports = loginObj;
+module.exports = loginSection;
