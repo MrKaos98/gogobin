@@ -10,12 +10,12 @@
       <div id='cart-line'></div>
       <p id='no-groceries-added'>Your shopping cart is empty.</p>
       <ul id='cart-items-wrap'></ul>
-      <div id='location-and-time-container'>
-        <div id='cart-location'></div>
-        <div id='cart-store-name'></div>
-        <div id='cart-store-address'></div>
-        <div id='cart-delivery-time'></div>
-      </div>
+      <ul id='location-and-time-container'>
+        <li id='cart-location'></li>
+        <li id='cart-store-name'></li>
+        <li id='cart-store-address'></li>
+        <li id='cart-delivery-time'></li>
+      </ul>
       <div id='cart-cost-section'>
         <p><b>Item Total</b>: &nbsp; <span id='all-items-subtotal'>$10.95</span></p>
         <p><b>Delivery Fee</b>: &nbsp; $4.99</p>
