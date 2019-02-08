@@ -1,4 +1,5 @@
 const store = require('../../store/store-index');
+const { updateLocationAndTime } = require('../../store/action-creators/action-creators');
 
 const locationSection = {
   async init(){
@@ -11,10 +12,6 @@ const locationSection = {
     };
     this.userLocation; 
     this.userCoords;
-    this.selectedCity;
-    this.selectedStore;
-    this.selectedStoreAddress;
-    this.selectedTime;
     this.jsonObj = await fetch('../homepage/gogobin.json').then(res => res.json());
   },
   cacheDom() {
@@ -100,22 +97,22 @@ const locationSection = {
       } 
     }
   },
-  storeClickHandler() {
-    var $storeOptionText = $(".store-list option:selected").text();
-    var firstP = $storeOptionText.indexOf("(");
-    var lastP = $storeOptionText.indexOf(")");
-    var $finalOptionText = $storeOptionText.substring(firstP + 1, lastP).toUpperCase();
-    var storeAddress = $storeOptionText.substring(firstP + 1, lastP);
-    this.selectedStore = storeAddress;
+  //isolate name of store and short address for updating map info window and 'store' location
+  storeClickHandler(e) {
+    const completeStoreText = e.target.options[e.target.selectedIndex].text;
+    const startBound = completeStoreText.indexOf("(");
+    const endBound = completeStoreText.indexOf(")");
+    this.selectedStore = completeStoreText.substring(0, startBound).trim();
+    this.shortStoreAddress = completeStoreText.substring(startBound + 1, endBound);
     this.deleteMarkers();
-    this.getStoreListArr(storeAddress)
+    this.getStoreListArr()
     this.resetLocationError();
   },
-  getStoreListArr(address) {
+  getStoreListArr() {
     var correctStoreArr = this.correctStoreArr;
     var storeAddress, storeCoords, storeAddress;
     this.jsonObj["" + correctStoreArr].forEach((store) => {
-      if(store.address.indexOf(address) > -1){
+      if(store.address.indexOf(this.shortStoreAddress) > -1){
         storeAddress = store.address;
         storeCoords = store.coords;
         storeName = store.storeName;
@@ -236,6 +233,7 @@ const locationSection = {
     $("#checkmark").css({"position":"absolute", "left": "40px"});
   },
   updateOrderLocation() {
+    store.dispatch(updateLocationAndTime(this.selectedCity.textContent, this.selectedStore, this.shortStoreAddress, this.selectedTime));
     this.scrollToFoodArea();
   },
   scrollToFoodArea() {
