@@ -25,6 +25,11 @@ const cartSection = {
     this.cartStoreName = document.getElementById("cart-store-name");
     this.cartStoreAddress = document.getElementById("cart-store-address");
     this.cartDeliveryTime = document.getElementById("cart-delivery-time");
+    this.cartCalculateWrap = document.getElementById('cart-calculate-wrap');
+    this.itemsTotal = document.getElementById('items-total');
+    this.deliveryFee = document.getElementById('delivery-fee');
+    this.cpmFee = document.getElementById('cpm-fee');
+    this.cartTotal = document.getElementById('cart-total');
   },
   bindEvents: function(){
     this.shoppingCart.addEventListener('click', this.showCartHandler.bind(this));
@@ -44,13 +49,14 @@ const cartSection = {
     this.cartWrap.style.display = "block";
     this.closeCartBtn.style.display = "block";
     this.loadCartItems();
-    this.loadLocationInfo();
   },
   hideCartHandler: function(){
     this.cartWindow.style.display = "none";
     this.cartWrap.style.display = "none";
     this.closeCartBtn.style.display = "none";
   },
+  //updated cart items are always loaded to display when cart is displayed
+  //loop through cart items array in store and render cart item from template
   loadCartItems: function(){
     this.cartItemsWrap.innerHTML = "";
     const cartItemObjs = store.getState().cart.cartItems;
@@ -60,6 +66,7 @@ const cartSection = {
       cartItemObjs.forEach(item => {
         const rowItem = this.cartItemTemplate.cloneNode(true);
         rowItem.style.display = "block";
+        rowItem.classList.add('real-cart-item');
         rowItem.children[0].textContent = item.name;
         rowItem.children[1].setAttribute('src', item.image);
         rowItem.children[1].setAttribute('alt', item.name);
@@ -69,14 +76,46 @@ const cartSection = {
         this.cartItemsWrap.appendChild(rowItem);
       });
     }
+    this.loadLocationInfo();
   },
   loadLocationInfo: function(){
-    const cartLocation = store.getState().cart.cartLocation;
-    this.locationTimeContainer.children[0].textContent = cartLocation.city;
-    this.locationTimeContainer.children[1].textContent = cartLocation.store;
-    this.locationTimeContainer.children[2].textContent = cartLocation.address;
-    this.locationTimeContainer.children[3].textContent = cartLocation.delivery;
+    const showLocationAndTime = store.getState().cart.showLocationAndTime;
+    if(showLocationAndTime){
+      this.locationTimeContainer.style.display = "block";
+    } else {
+      this.locationTimeContainer.style.display = "none";
+    }
+    const locationAndTimeObj = store.getState().cart.locationAndTime;
+    this.locationTimeContainer.children[0].textContent = locationAndTimeObj.store;
+    this.locationTimeContainer.children[1].textContent = locationAndTimeObj.address;
+    this.locationTimeContainer.children[2].textContent = locationAndTimeObj.city;
+    this.locationTimeContainer.children[3].textContent = locationAndTimeObj.delivery;
+    this.showCarCalculationsWrap();
   },
+  showCarCalculationsWrap() {
+    const showCartCalculations = store.getState().cart.showCartCalculations;
+    if(showCartCalculations){
+      this.cartCalculateWrap.style.display = "block";
+    } else {
+      this.cartCalculateWrap.style.display = "none";
+    }
+    this.loadCartCalculations();
+  },
+  loadCartCalculations() {
+    this.cartItemTotals = document.getElementsByClassName('cart-item-total');
+    const cartItemArr = [...this.cartItemTotals].slice(1);
+    this.itemSum = cartItemArr.map(cost => cost.textContent).reduce((accum, cost) => {
+      return accum + parseFloat(cost.replace('$', ''));
+    }, 0);
+    this.itemsTotal.textContent = `$${this.itemSum}`;
+    this.loadCartTotal();
+  },
+  loadCartTotal() {
+    const deliveryFeeNum = parseFloat(this.deliveryFee.textContent.replace('$', ''));
+    const cpmFeeNum = parseFloat(this.cpmFee.textContent.replace('$', ''));
+    this.cartTotal.textContent = `$${deliveryFeeNum + cpmFeeNum + this.itemSum}`;
+  },
+  //opens up the item modal to update the quantity
   editItemHandler(e){
     let target = e.target.parentElement.parentElement
     console.log(target);
