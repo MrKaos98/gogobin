@@ -41,7 +41,7 @@ const locationSection = {
     this.deliveryTimeOptions = document.querySelectorAll("#delivery-time-list option");
     this.readyBtn = document.getElementById("ready-btn");
     this.checkmark = document.getElementById("checkmark");
-    this.mapSectionErrorMsg = document.getElementById("map-section-error-msg");
+    this.locationErrorMsg = document.getElementById("location-error-msg");
   },
   bindEvents() {
     this.locationInputField.addEventListener("click", this.toggleCityListView.bind(this));
@@ -50,9 +50,10 @@ const locationSection = {
       city.addEventListener('click', this.cityClickHandler.bind(this, index));
     });
     this.deliveryTimeList.addEventListener("change", this.timeChangeHandler.bind(this));
-    this.readyBtn.addEventListener("click", this.startOrderHandler.bind(this));
+    this.readyBtn.addEventListener("click", this.readyBtnClickHandler.bind(this));
   },
   cityClickHandler(index) {
+    this.resetLocationError();
     this.deselectOtherCities(index);    
     this.getSelectedCityJsonObj();
     const selectedCityText = this.selectedCity.textContent;
@@ -76,8 +77,8 @@ const locationSection = {
   },
   prepareSelectedCityStoreList(index) {
     this.deliveryTimeList.style.display = "block";
-    if(this.mapSectionErrorMsg.style.display == "block"){
-      this.mapSectionErrorMsg.style.display = "none";
+    if(this.locationErrorMsg.style.display == "block"){
+      this.locationErrorMsg.style.display = "none";
     }
     this.checkmark.style.left = "-100px";
     for(let i = 0; i < this.storeLists.length; i++){
@@ -105,9 +106,10 @@ const locationSection = {
     var lastP = $storeOptionText.indexOf(")");
     var $finalOptionText = $storeOptionText.substring(firstP + 1, lastP).toUpperCase();
     var storeAddress = $storeOptionText.substring(firstP + 1, lastP);
-    this.selectedStoreAddress = storeAddress;
+    this.selectedStore = storeAddress;
     this.deleteMarkers();
     this.getStoreListArr(storeAddress)
+    this.resetLocationError();
   },
   getStoreListArr(address) {
     var correctStoreArr = this.correctStoreArr;
@@ -153,7 +155,7 @@ const locationSection = {
     });
   },
   getSelectedCityJsonObj() {
-    var selectedCity = this.selectedCity.textContent;
+    const selectedCity = this.selectedCity.textContent;
     this.jsonObj.storeLocations.forEach(storeLocation => {
       if(storeLocation.location === selectedCity){
         this.locationInputField.value = selectedCity;
@@ -202,17 +204,39 @@ const locationSection = {
       }
     }
   },
-  timeChangeHandler(index) {
-    this.selectedTime = this.deliveryTimeList.options[this.deliveryTimeList.selectedIndex].text;
+  timeChangeHandler() {
+    this.selectedTime = (
+      this.deliveryTimeList.options[this.deliveryTimeList.selectedIndex].text
+    );
+    this.resetLocationError();
   },
-  startOrderHandler() {
-    if(this.selectedCity == undefined || this.selectedStoreAddress == undefined){
-      this.mapSectionErrorMsg.style.display = "block";
-    } else if (this.selectedCity != undefined && this.selectedStoreAddress != undefined){
-      this.mapSectionErrorMsg.style.display = "none";
-      $("#checkmark").css({"position":"absolute", "left": "40px"});
-      this.scrollToFoodArea();
+  readyBtnClickHandler() {
+    switch(undefined){
+      case this.selectedCity: return this.cityUnselectedHandler();
+      case this.selectedStore: return this.storeUnselectedHandler();
+      case this.selectedTime: return this.timeUnselectedHandler();
+      default: return this.updateOrderLocation();
     }
+  },
+  cityUnselectedHandler() {
+    this.locationErrorMsg.textContent = "Please select a city";
+    this.locationErrorMsg.style.display = "block";
+  },
+  storeUnselectedHandler() {
+    this.locationErrorMsg.textContent = "Please select a store";
+    this.locationErrorMsg.style.display = "block";
+  },
+  timeUnselectedHandler() {
+    this.locationErrorMsg.textContent = "Please select a delivery time";
+    this.locationErrorMsg.style.display = "block";
+  },
+  resetLocationError() {
+    this.locationErrorMsg.textContent = "";
+    this.locationErrorMsg.style.display = "none";
+    $("#checkmark").css({"position":"absolute", "left": "40px"});
+  },
+  updateOrderLocation() {
+    this.scrollToFoodArea();
   },
   scrollToFoodArea() {
     const foodAreaOffset = document.getElementById("food-area").offsetTop - 30;
