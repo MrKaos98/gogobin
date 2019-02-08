@@ -20,6 +20,6 @@ if(isset($_POST["submit"])){
   $emailLink = "www.gogobin.com/changepwd?key=" . $subStr;
   $msg = "To change your password click on the link below\n" . $emailLink;
   $header = "From: adminjr@gogobin.com\r\n";
-  mail($email, "Change Password", $msg, $header);+
+  mail($email, "Change Password", $msg, $header);
   // after person clicks link to changepwd
 }
