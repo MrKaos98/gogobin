@@ -11,7 +11,6 @@
 }
 #user-location-section {
   position: relative;
-  height: 400px;
   text-align: center;
 }
 #user-location-inputs {
@@ -127,7 +126,7 @@
   @include transform(translateY(-55%));
   @include transition(0.4s);
 }
-#start-order-btn {
+#ready-btn {
   width: 100%;
   padding: 12px 30px;
   background-color:  $primaryBlueColor;
@@ -140,17 +139,17 @@
   @include borderRadius(4px);
   @include transition(0.3s);
 }
-#start-order-btn:focus {
+#ready-btn:focus {
   outline: none;
 }
-#start-order-btn:hover {
+#ready-btn:hover {
   background-color: $primaryBlueColor;
   color: white;
 }
 #start-order-container:hover #checkmark {
   color: white;
 }
-#map-section-error-msg {
+#location-error-msg {
   display: none;
   color: red;
   margin: 10px 0 0 0;
