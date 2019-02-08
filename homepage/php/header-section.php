@@ -44,7 +44,7 @@
           <nav id='horizontal-nav'><ul>
             <li id='contact-btn' class='h-nav-item'>Contact</li>
             <li id='login-btn' class='h-nav-item'>Login</li>
-            <li id='signup-btn' class='h-nav-item'><a href='../join/signup.php'>Sign Up</a></li>
+            <li id='signup-btn' class='h-nav-item'><a href='../signup/signup.php'>Sign Up</a></li>
           </ul></nav></header>
         "; //closing tags for logged-in-nav & > ul
       }
@@ -68,7 +68,7 @@
           <ul>
             <li id='vert-contact-btn'><i class='fa fa-envelope'></i>&nbsp; Contact</li>
             <li id='vert-login-btn'><i class='fa fa-user-o'></i>&nbsp; Login</li>
-            <li id='vert-signup-btn'><i class='fa fa-user-plus'></i>&nbsp; <a href='../join/signup.php'>Sign Up</a></li>
+            <li id='vert-signup-btn'><i class='fa fa-user-plus'></i>&nbsp; <a href='../signup/signup.php'>Sign Up</a></li>
           </ul>
         </nav>
       </header>
