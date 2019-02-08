@@ -1,7 +1,7 @@
 const store = require('../../store/store-index');
 
 const locationSection = {
-  init: async function(){
+  async init(){
     this.cacheDom();
     this.bindEvents();
     this.storeMarkers = [];
@@ -17,7 +17,7 @@ const locationSection = {
     this.selectedTime;
     this.jsonObj = await fetch('../homepage/gogobin.json').then(res => res.json());
   },
-  cacheDom: function(){
+  cacheDom() {
     this.locationInputField = document.getElementById("location-input-field"),
     this.cityList = document.getElementById("city-list"),
     this.cityListItems = document.querySelectorAll("#city-list li"),
@@ -39,42 +39,42 @@ const locationSection = {
     this.irvineStoreList = document.getElementById("irvine-store-list");
     this.deliveryTimeList = document.getElementById("delivery-time-list");
     this.deliveryTimeOptions = document.querySelectorAll("#delivery-time-list option");
-    this.startOrderBtn = document.getElementById("start-order-btn");
+    this.readyBtn = document.getElementById("ready-btn");
     this.checkmark = document.getElementById("checkmark");
     this.mapSectionErrorMsg = document.getElementById("map-section-error-msg");
   },
-  bindEvents: function(){
+  bindEvents() {
     this.locationInputField.addEventListener("click", this.toggleCityListView.bind(this));
     this.locationInputField.addEventListener("input", this.locationInputHandler.bind(this));
-    for(let i = 0; i < this.cityListItems.length; i++){
-      this.cityListItems[i].addEventListener("click", this.cityClickHandler.bind(this, i));
-    }
+    [...this.cityListItems].forEach((city, index) => {
+      city.addEventListener('click', this.cityClickHandler.bind(this, index));
+    });
     this.deliveryTimeList.addEventListener("change", this.timeChangeHandler.bind(this));
-    this.startOrderBtn.addEventListener("click", this.startOrderHandler.bind(this));
+    this.readyBtn.addEventListener("click", this.startOrderHandler.bind(this));
   },
-  cityClickHandler: function(index){
-    this.deselectOtherCities(index);
-    this.selectedCity = this.cityListItems[index];
-    this.selectedCity.style.backgroundColor = "#0080ff";
-    this.selectedCity.style.color = "#fff";
-    this.cityList.style.height = "176px";
+  cityClickHandler(index) {
+    this.deselectOtherCities(index);    
     this.getSelectedCityJsonObj();
-    var selectedCityText = this.selectedCity.textContent;
+    const selectedCityText = this.selectedCity.textContent;
     $("#city-list").animate({
         scrollTop: $("li:contains(" + selectedCityText + ")").offset().top - $("#city-list").offset().top + $("#city-list").scrollTop()
     }, "500");
     this.prepareSelectedCityStoreList(index);
   },
-  deselectOtherCities: function(index){
-    var counter = 0;
-    var length = this.cityListItems.length;
-    for(counter; counter < length; counter++){
-      if(this.cityListItems[counter].style.backgroundColor === "rgb(46, 204, 113)"){
-        this.cityListItems[counter].style.backgroundColor = "";
-      }
-    }
+  deselectOtherCities(index) {
+    [...this.cityListItems].forEach(city => {
+      city.style.backgroundColor = "";
+      city.style.color = "black";
+    });
+    this.styleSelectedCity(index);
   },
-  prepareSelectedCityStoreList: function(index){
+  styleSelectedCity(index) {
+    this.selectedCity = this.cityListItems[index];
+    this.selectedCity.style.backgroundColor = "#0080ff";
+    this.selectedCity.style.color = "#fff";
+    this.cityList.style.height = "176px";
+  },
+  prepareSelectedCityStoreList(index) {
     this.deliveryTimeList.style.display = "block";
     if(this.mapSectionErrorMsg.style.display == "block"){
       this.mapSectionErrorMsg.style.display = "none";
@@ -86,7 +86,7 @@ const locationSection = {
     }
     this.showSelectedCityStoreList(index);
   },
-  showSelectedCityStoreList: function(index){
+  showSelectedCityStoreList(index) {
     this.correctStoreArr;
     var selectedCity = this.cityListItems[index].textContent;
     for(let list of this.storeLists){
@@ -99,7 +99,7 @@ const locationSection = {
       } 
     }
   },
-  storeClickHandler: function(){
+  storeClickHandler() {
     var $storeOptionText = $(".store-list option:selected").text();
     var firstP = $storeOptionText.indexOf("(");
     var lastP = $storeOptionText.indexOf(")");
@@ -109,7 +109,7 @@ const locationSection = {
     this.deleteMarkers();
     this.getStoreListArr(storeAddress)
   },
-  getStoreListArr: function(address){
+  getStoreListArr(address) {
     var correctStoreArr = this.correctStoreArr;
     var storeAddress, storeCoords, storeAddress;
     this.jsonObj["" + correctStoreArr].forEach((store) => {
@@ -122,13 +122,13 @@ const locationSection = {
     this.selectedStore = storeName;
     this.addStoreMarkers(storeName, storeCoords, storeAddress);
   },
-  deleteMarkers: function(){
+  deleteMarkers() { 
     for (var i = 0; i < this.storeMarkers.length; i++) {
       this.storeMarkers[i].setMap(null);
     }
     this.storeMarkers = [];
   },
-  addStoreMarkers: function(storeName, storeCoords, storeAddress){
+  addStoreMarkers(storeName, storeCoords, storeAddress) {
     var marker = new google.maps.Marker({
       map: this.mapInstance,
       icon: "../img/shopping-cart.png",
@@ -148,28 +148,28 @@ const locationSection = {
         `
     });
     infoWindow.open(map, marker);
-    marker.addListener("click", function(){
+    marker.addListener("click", () => {
       infoWindow.open(map, marker);
     });
   },
-  getSelectedCityJsonObj: function(){
+  getSelectedCityJsonObj() {
     var selectedCity = this.selectedCity.textContent;
-    this.jsonObj.storeLocations.forEach(function(storeLocation){
+    this.jsonObj.storeLocations.forEach(storeLocation => {
       if(storeLocation.location === selectedCity){
         this.locationInputField.value = selectedCity;
         this.createMapObj(11, storeLocation.coords);
         this.addLocationMarker(storeLocation.location, storeLocation.coords);
       }
-    }.bind(this)); 
+    }); 
   },
-  createMapObj: function(zoom, coords){
+  createMapObj(zoom, coords) {
     var activeCenterZoom = {
       zoom: zoom,
       center: coords
     }
     this.mapInstance = new google.maps.Map(this.mapElement, activeCenterZoom);
   },
-  addLocationMarker: function(location, coords){
+  addLocationMarker(location, coords) {
     var marker = new google.maps.Marker({
       map: this.mapInstance,
       animation: google.maps.Animation.DROP,
@@ -183,13 +183,13 @@ const locationSection = {
         infoWindow.open(map, marker);
     });
   },
-  toggleCityListView: function(){
+  toggleCityListView() {
     if(this.cityList.style.height !== "150px"){
       this.cityList.style.height = "150px";
       this.cityList.style.overflowY = "auto";
     }
   },
-  locationInputHandler: function(){
+  locationInputHandler() {
     let counter = 0;
     var cityListItemsLength = this.cityListItems.length;
     var inputValue = this.locationInputField.value.toUpperCase();
@@ -202,20 +202,19 @@ const locationSection = {
       }
     }
   },
-  timeChangeHandler: function(index){
+  timeChangeHandler(index) {
     this.selectedTime = this.deliveryTimeList.options[this.deliveryTimeList.selectedIndex].text;
   },
-  startOrderHandler: function(){
+  startOrderHandler() {
     if(this.selectedCity == undefined || this.selectedStoreAddress == undefined){
       this.mapSectionErrorMsg.style.display = "block";
     } else if (this.selectedCity != undefined && this.selectedStoreAddress != undefined){
-      cartModalObj.updateCartLocationAndTime();
       this.mapSectionErrorMsg.style.display = "none";
       $("#checkmark").css({"position":"absolute", "left": "40px"});
       this.scrollToFoodArea();
     }
   },
-  scrollToFoodArea: function(){
+  scrollToFoodArea() {
     const foodAreaOffset = document.getElementById("food-area").offsetTop - 30;
     window.scroll({
       top: foodAreaOffset,
