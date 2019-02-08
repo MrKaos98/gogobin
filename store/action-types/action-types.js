@@ -4,7 +4,7 @@ const completeOrder = 'COMPLETE_ORDER';
 const checkCurrentOrders = 'CHECK_CURRENT_ORDERS';
 const addCartItem = 'ADD_CART_ITEM';
 const removeCartItem = 'REMOVE_CART_ITEM';
-const updateCartLocation = 'UPDATE_CART_LOCATION';
+const updateLocationAndTime = 'UPDATE_CART_LOCATION';
 
 module.exports = {
   toggleLogin,
@@ -12,5 +12,6 @@ module.exports = {
   completeOrder,
   checkCurrentOrders,
   addCartItem,
-  removeCartItem
+  removeCartItem,
+  updateLocationAndTime
 };
