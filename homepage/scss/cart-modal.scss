@@ -114,7 +114,28 @@
 #cart-wrap p {
   text-align: center;
 }
-#cart-cost-section {
+#location-and-time-container {
+  display: none;
+  width: 90%;
+  margin: 15px auto;
+  text-align: center;
+
+  > li {
+    padding: 6px;
+    border: 1px solid rgba(0,0,0,0.2);
+    margin: 5px 0;
+    @include borderRadius(4px);
+  }
+  &::after {
+    display: block;
+    content: "";
+    width: 50%;
+    height: 2px;
+    background-color: rgba(0, 0, 0, 0.4);
+    margin: auto;
+  }
+}
+#cart-calculate-wrap {
   display: none;
 }
 #place-order-btn {
