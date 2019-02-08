@@ -11,13 +11,13 @@ const removeCartItem = index => ({
   type: actionTypes.removeCartItem,
   val: index
 });
-const updateCartLocation = (city, store, address, delivery) => ({
-  type: actionTypes.updateCartLocation,
+const updateLocationAndTime = (city, store, address, delivery) => ({
+  type: actionTypes.updateLocationAndTime,
   val: {city, store, address, delivery}
 });
 module.exports = {
   toggleLogin,
   addCartItem,
   removeCartItem,
-  updateCartLocation
+  updateLocationAndTime
 };
