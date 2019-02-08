@@ -16,11 +16,11 @@
         <li id='cart-store-address'></li>
         <li id='cart-delivery-time'></li>
       </ul>
-      <div id='cart-cost-section'>
-        <p><b>Item Total</b>: &nbsp; <span id='all-items-subtotal'>$10.95</span></p>
-        <p><b>Delivery Fee</b>: &nbsp; $4.99</p>
-        <p><b>Cost / Mile</b>: &nbsp; $0.85</p>
-        <p><b>Total</b>: &nbsp; <span id='cart-total'>$15.79</span></p>
+      <div id='cart-calculate-wrap'>
+        <p><b>Items Total</b>: &nbsp; <span id='items-total'></span></p>
+        <p><b>Delivery Fee</b>: &nbsp; <span id='delivery-fee'>$4.99</span></p>
+        <p><b>Cost / Mile</b>: &nbsp; <span id='cpm-fee'>$0.85</span></p>
+        <p><b>Total</b>: &nbsp; <span id='cart-total'></span></p>
       </div>
       <button type='button' id='place-order-btn'>Place Order</button>
       <form action='../includes/orderfood.php' id='cart-form' method='POST'>
