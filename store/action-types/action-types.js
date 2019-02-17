@@ -4,7 +4,11 @@ const completeOrder = 'COMPLETE_ORDER';
 const checkCurrentOrders = 'CHECK_CURRENT_ORDERS';
 const addCartItem = 'ADD_CART_ITEM';
 const removeCartItem = 'REMOVE_CART_ITEM';
+const editCartItem = 'EDIT_CART_ITEM';
+const resetOpenSpecificItem = 'RESET_OPEN_SPECIFIC_ITEM';
 const updateLocationAndTime = 'UPDATE_CART_LOCATION';
+const userAuth = 'USER_AUTH';
+const resetCart = 'RESET_CART';
 
 module.exports = {
   toggleLogin,
@@ -13,5 +17,9 @@ module.exports = {
   checkCurrentOrders,
   addCartItem,
   removeCartItem,
-  updateLocationAndTime
+  editCartItem,
+  updateLocationAndTime,
+  resetOpenSpecificItem,
+  userAuth,
+  resetCart
 };
