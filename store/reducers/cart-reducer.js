@@ -1,6 +1,7 @@
 const actionTypes = require('../action-types/action-types');
 const initState = {
   cartItems: [],
+  openSpecificItem: {val: false, index: ''},
   showCartCalculations: false,
   showLocationAndTime: false,
   locationAndTime: {}
@@ -28,11 +29,15 @@ const updateLocationAndTimeHandler = (state, obj) => ({
   showLocationAndTime: true,
   locationAndTime: obj
 });
+const editCartItemHandler = (state, index) => ({...state, openSpecificItem: {val: true, index}});
+const resetOpenSpecificItemHandler = state => ({...state, openSpecificItem:{val: false, index: ''}});
 const cartReducer = (state = initState, action) => {
   switch(action.type){
     case actionTypes.addCartItem: return addCartItemHandler(state, action.val);
     case actionTypes.removeCartItem: return removeCartItemHandler(state, action.val);
+    case actionTypes.editCartItem: return editCartItemHandler(state, action.val);
     case actionTypes.updateLocationAndTime: return updateLocationAndTimeHandler(state, action.val);
+    case actionTypes.resetOpenSpecificItem: return resetOpenSpecificItemHandler(state);
     default: return state;
   }
 }
