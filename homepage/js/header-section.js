@@ -12,7 +12,6 @@ const headerSection = {
   cacheDom: function() {
     this.header = document.getElementsByTagName("header")[0];
     this.brandLogo = document.querySelector("#brand-logo a");
-    this.contactBtn = document.getElementById("contact-btn");
     this.loginBtn = document.getElementById("login-btn");
     this.shoppingCart = document.getElementById('shopping-cart');
     this.vertLoginBtn = document.getElementById("vert-login-btn");
@@ -89,7 +88,6 @@ const headerSection = {
   toggleHeaderColors: function(){
     this.header.classList.add("active-header");
     this.brandLogo.classList.add("active-brand-logo");
-    this.contactBtn.classList.add("active-nav-item");
     if(this.loginBtn) this.loginBtn.classList.add("active-nav-item");
     if(this.signUpAnchor) this.signUpAnchor.classList.add("active-nav-item");
     if(this.signUpBg) this.signUpBg.classList.add("active-bg");
@@ -104,7 +102,6 @@ const headerSection = {
   resetHeaderColors: function(){
     this.header.classList.remove("active-header");
     this.brandLogo.classList.remove("active-brand-logo");
-    this.contactBtn.classList.remove("active-nav-item");
     if(this.loginBtn) this.loginBtn.classList.remove("active-nav-item");
     if(this.signUpAnchor) this.signUpAnchor.classList.remove("active-nav-item");
     if(this.signUpBg) this.signUpBg.classList.remove("active-bg");
