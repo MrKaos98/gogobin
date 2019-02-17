@@ -36,24 +36,19 @@ const loginSection = {
     }
   },
   authenticateUser: function(){
-    var usrNameValue = this.usernameField.value;
-    var pwdValue = this.passwordField.value;
-    var param = "username="+usrNameValue+"&pwd="+pwdValue;
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../includes/checkUsernameAndPwd.php", true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.onload = function(){
-      if(xhr.status == 200 || this.status == 200){
-        var data = xhr.responseText;
-        if(data){
-          this.incorrectLoginMsg.style.display = "block";
-        } else {
-          this.incorrectLoginMsg.style.display = "none";
-          this.loginSubmitBtn.click();
-        }
+    const loginObj = {
+      method: 'POST',
+      body: new URLSearchParams(`username=${this.usernameField.value}&pwd=${this.passwordField.value}`)
+    }
+    fetch("../includes/checkUsernameAndPwd.php", loginObj)
+    .then(res => res.text()).then(data => {
+      if(data){
+        this.incorrectLoginMsg.style.display = "block";
+      } else {
+        this.incorrectLoginMsg.style.display = "none";
+        this.loginForm.submit();
       }
-    }.bind(this);
-    xhr.send(param);
+    });
   },
   closeErrorMsg: function(){
     this.incorrectLoginMsg.style.display = "none";
