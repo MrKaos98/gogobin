@@ -233,7 +233,7 @@ const locationSection = {
     $("#checkmark").css({"position":"absolute", "left": "40px"});
   },
   updateOrderLocation() {
-    store.dispatch(updateLocationAndTime(this.selectedCity.textContent, this.selectedStore, this.shortStoreAddress, this.selectedTime));
+    store.dispatch(updateLocationAndTime(this.selectedCity.textContent, this.shortStoreAddress, this.selectedStore, this.selectedTime));
     this.scrollToFoodArea();
   },
   scrollToFoodArea() {
