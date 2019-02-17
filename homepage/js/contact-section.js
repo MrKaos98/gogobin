@@ -4,18 +4,12 @@ const contactSection = {
     this.bindEvents();
   },
   cacheDOM(){
-    this.contactBtn = document.getElementById("contact-btn");
-    this.vertContactBtn = document.getElementById("vert-contact-btn");
     this.contactForm = document.querySelector("#contact-section form");
     this.contactSubmitBtn = document.getElementById("contact-submit-btn");
     this.sectionOffset = document.getElementById("contact-section").offsetTop - 70;
   },
   bindEvents(){
-    this.contactBtn.addEventListener("click", this.scrollToSection.bind(this));
     this.contactSubmitBtn.addEventListener("click", this.contactSubmitHandler.bind(this));
-    if(this.vertContactBtn){
-      this.vertContactBtn.addEventListener("click", this.scrollToSection.bind(this)); 
-    }
   },
   scrollToSection() {
     window.scroll({
