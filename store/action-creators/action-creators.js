@@ -11,13 +11,31 @@ const removeCartItem = index => ({
   type: actionTypes.removeCartItem,
   val: index
 });
-const updateLocationAndTime = (city, store, address, delivery) => ({
+const editCartItem = index => ({
+  type: actionTypes.editCartItem,
+  val: index
+});
+const resetOpenSpecificItem = () => ({
+  type: actionTypes.resetOpenSpecificItem
+});
+const updateUserAuth = status => ({
+  type: actionTypes.userAuth,
+  val: status
+});
+const updateLocationAndTime = (city, address, store, delivery) => ({
   type: actionTypes.updateLocationAndTime,
-  val: {city, store, address, delivery}
+  val: {city, address, store, delivery}
+});
+const resetCart = () => ({
+  type: actionTypes.resetCart
 });
 module.exports = {
   toggleLogin,
   addCartItem,
   removeCartItem,
-  updateLocationAndTime
+  editCartItem,
+  resetOpenSpecificItem,
+  updateLocationAndTime,
+  updateUserAuth,
+  resetCart
 };
