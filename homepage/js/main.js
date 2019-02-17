@@ -7,6 +7,17 @@ const itemModalSection = require('./item-modal-section').init();
 const locationSection = require('./location-section').init();
 const convosSection = require('./convos-section').init();
 const cartSection = require('./cart-section').init();
+const store = require('../../store/store-index');
+const { updateUserAuth } = require('../../store/action-creators/action-creators');
+
+window.onload = function(){
+  const userBox = document.getElementById("user-box");
+  if(userBox){
+    store.dispatch(updateUserAuth(true));
+  } else {
+    store.dispatch(updateUserAuth(false));
+  }
+};
 
 /*--- Open Store Orders Modal ---*/
 function showStoreOrders(storeAddress){
