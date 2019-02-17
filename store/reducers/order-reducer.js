@@ -1,8 +1,7 @@
 const actionTypes = require('../action-types/action-types');
 const initState = {
   orderInProgress: false,
-  editInProgress: false,
-  currentOrderItems: []
+  editInProgress: false
 };
 const checkCurrentOrderStatus = async state => {
   const orderStatus = await fetch('../../checkCurrentOrders.php').then(res => res.json());
