@@ -23,15 +23,6 @@
         <p><b>Total</b>: &nbsp; <span id='cart-total'></span></p>
       </div>
       <button type='button' id='place-order-btn'>Place Order</button>
-      <form action='../includes/orderfood.php' id='cart-form' method='POST'>
-        <input type='text' name='store_city' />
-        <input type='text' name='store_address' />
-        <input type='text' name='store_name' />
-        <input type='text' name='delivery_time' />
-        <input type='text' name='food_ids' />
-        <input type='text' name='item_names' />
-        <input type='submit' name='submit' value='Submit' id='hidden-submit'/>
-      </form>
     </section>
   ";
 ?>
