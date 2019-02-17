@@ -1,14 +1,8 @@
 <?php
 include_once "dbh-inc.php";
 
-if(!isset($_POST['submit'])){
-  header("Location: ../homepage/gogobin.php");
-  exit();
-}
-
 class ReturningUser {
   private $returning_user = [];
-  private $empty_val_present = false;
   public function __construct($username, $pwd){
     $this->returning_user['username'] = $username;
     $this->returning_user['pwd'] = $pwd;
@@ -17,16 +11,11 @@ class ReturningUser {
     foreach($this->returning_user as $part){
       $isEmpty = $this->check_for_empties($part);
       if($isEmpty){
-        $this->empty_val_present = true;
         $this->end_process('empty_value');
         return;
-      } else {
-        $this->empty_val_present = false;
       }
     }
-    if(!$this->empty_value_present){
-      $this->check_username_prep();
-    }
+    $this->check_username_prep();
   }
   private function check_username_prep(){
     $sql_check_username = "SELECT * FROM users WHERE user_username = ?";
