@@ -1,5 +1,5 @@
 const store = require('../../store/store-index');
-const { addCartItem } = require('../../store/action-creators/action-creators');
+const { addCartItem, resetOpenSpecificItem } = require('../../store/action-creators/action-creators');
 
 const itemModalSection = {
   init: async function(){
@@ -60,7 +60,7 @@ const itemModalSection = {
       this.cartBadge.style.display = "none";
     }
   },
-  displayItemModal: function(index){
+  displayItemModal: function(index, fromCart){
     this.itemModalWindow.style.display = "block";
     this.itemModalWrapper.style.display = "block";
     this.itemModalWrapper.setAttribute("data-for", "item-" + (index + 1) + "-window");
@@ -72,6 +72,9 @@ const itemModalSection = {
     this.addToCartBtn.setAttribute("data-index", index);
     this.addToCartBtn.setAttribute('data-name', this.jsonObj.itemNames[index]);
     this.addToCartBtn.setAttribute('data-img', `../img/image${(index + 1)}.jpg`);
+    if(fromCart){
+      store.dispatch(resetOpenSpecificItem());
+    }
   },
   closeItemModal: function(){
     this.itemModalWrapper.style.display = "none";
@@ -79,5 +82,13 @@ const itemModalSection = {
     this.itemAmount.value = 1;
   }
 }
+
+store.subscribe(() => {
+  const openSpecificItem = store.getState().cart.openSpecificItem.val;
+  if(openSpecificItem){
+    const itemIndex = store.getState().cart.openSpecificItem.index;
+    itemModalSection.displayItemModal(itemIndex, true);
+  }
+});
 
 module.exports = itemModalSection;
