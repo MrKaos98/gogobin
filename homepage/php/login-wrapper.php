@@ -17,7 +17,6 @@
               <a id='forgot-pwd-link' href='forgotpwd.php'>Forgot Password?</a>
             </div>
             <input type='button' id='login-wrapper-btn' value='Login'/>
-            <input type='submit' name='submit' id='login-submit' value='Login' hidden/>
           </form>
           <div id='create-account-wrapper'>
             <p>New to Gogobin? <a href='../join/signup.php'>Sign Up</a></p>
