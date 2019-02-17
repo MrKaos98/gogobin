@@ -1,4 +1,4 @@
-const { removeCartItem } = require('../../store/action-creators/action-creators');
+const { removeCartItem, editCartItem } = require('../../store/action-creators/action-creators');
 const store = require('../../store/store-index');
 
 const cartSection = {
@@ -33,7 +33,7 @@ const cartSection = {
   },
   bindEvents: function(){
     this.shoppingCart.addEventListener('click', this.showCartHandler.bind(this));
-    this.placeOrderBtn.addEventListener("click", this.placeOrderHandler.bind(this));
+    this.placeOrderBtn.addEventListener("click", this.checkUserAuth.bind(this));
     this.cartWindow.addEventListener('click', this.hideCartHandler.bind(this));
     this.closeCartBtn.addEventListener('click', this.hideCartHandler.bind(this));
     document.addEventListener("click", function(e){
@@ -72,6 +72,7 @@ const cartSection = {
         rowItem.children[1].setAttribute('alt', item.name);
         rowItem.children[2].children[2].textContent = item.quantity;
         rowItem.children[2].children[3].textContent = `$${item.quantity * 1.99}`;
+        rowItem.children[3].children[0].setAttribute('item-index', item.index);
         rowItem.children[3].children[1].setAttribute('item-index', item.index);
         this.cartItemsWrap.appendChild(rowItem);
       });
@@ -113,12 +114,17 @@ const cartSection = {
   loadCartTotal() {
     const deliveryFeeNum = parseFloat(this.deliveryFee.textContent.replace('$', ''));
     const cpmFeeNum = parseFloat(this.cpmFee.textContent.replace('$', ''));
-    this.cartTotal.textContent = `$${deliveryFeeNum + cpmFeeNum + this.itemSum}`;
+    const cartTotal = deliveryFeeNum + cpmFeeNum + this.itemSum
+    this.cartTotal.textContent = `$${cartTotal.toFixed(2)}`;
   },
   //opens up the item modal to update the quantity
   editItemHandler(e){
-    let target = e.target.parentElement.parentElement
-    console.log(target);
+    const itemIndex = e.target.getAttribute('item-index');
+    store.dispatch(removeCartItem(itemIndex));
+    store.dispatch(editCartItem(parseInt(itemIndex, 10)));
+    this.hideCartHandler();
+    this.updateCartBadge();
+    this.removeCartItem(e);
   },
   removeItemHandler: function(e){
     const itemIndex = e.target.getAttribute('item-index');
@@ -144,18 +150,64 @@ const cartSection = {
     const rowItem = e.target.parentElement.parentElement;
     rowItem.remove();
   },
-  placeOrderHandler: function(){
-    if(store.getState().order.orderInProgress && store.getState().order.editInProgress === false){
-      alert('You already have an order in progress');
-    } else if (store.getState().order.editInProgress && store.getState().order.orderInProgress === false){
-      //get all cart item ids and then
-      //this.updateOrderItemIds()
-      //store.dispatch(updateOrderItemIds)
+  checkUserAuth: function(){
+    const isAuth = store.getState().auth.isAuth;
+    if(!isAuth){
+      alert("Must sign in to place order");
     } else {
-      //get all cart item ids and then
-      //this.updateOrderItemIds()
-      //store.dispatch(updateOrderItemIds)
+      this.checkLocationAndTime();
     }
-  }
+  },
+  checkLocationAndTime: function(){
+    const locationAndTime = store.getState().cart.locationAndTime;
+    if(Object.keys(locationAndTime).length === 0){
+      alert("Please select a location and delivery time");
+    } else {
+      this.checkForExistingOrders();
+    }
+  },
+  checkForExistingOrders: function(){
+    fetch('../includes/checkCurrentOrders.php')
+    .then(res => res.text()).then(data => {
+      if(data === 'placed'){
+        alert('You already have an order in progress');
+      } else if (data === "editing"){
+        this.updateExistingOrder();
+      } else if (data === "ready to order"){
+        this.prepCartForm();
+      }
+    });
+  },
+  getItemLocationTimeData(){
+    const itemNames = [];
+    const itemIds = [];
+    const itemAmounts = [];
+    const locationAndTime = store.getState().cart.locationAndTime;
+    store.getState().cart.cartItems.forEach(itemObj => {
+      itemNames.push(itemObj.name);
+      itemIds.push(itemObj.index);
+      itemAmounts.push(itemObj.quantity);
+    });
+    return {itemIds, itemNames, itemAmounts, locationAndTime};
+  },
+  prepCartForm(){
+    let newOrder = new FormData();
+    newOrder.append('city', this.getItemLocationTimeData().locationAndTime.city);
+    newOrder.append('address', this.getItemLocationTimeData().locationAndTime.address);
+    newOrder.append('store', this.getItemLocationTimeData().locationAndTime.store);
+    newOrder.append('time', this.getItemLocationTimeData().locationAndTime.delivery);
+    newOrder.append('ids', this.getItemLocationTimeData().itemIds.join(','));
+    newOrder.append('names', this.getItemLocationTimeData().itemNames.join(','));
+    newOrder.append('amounts', this.getItemLocationTimeData().itemAmounts.join(','));
+    newOrder.append('total', this.cartTotal.textContent);
+    this.submitNewOrder(newOrder);
+  },
+  submitNewOrder(newOrder){
+    const order = { method: 'POST', body:  newOrder };
+    fetch('../includes/placeOrder.php', order)
+    .then(res => res.text()).then(() => this.confirmOrder()).then(() => this.resetCart());
+  },
+
 }
+
 module.exports = cartSection;
